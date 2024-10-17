@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var palavraGerada='Clique no botão para gerar uma palavra!';
   var numeroGerado=0;
+  var quantidadeClicks= 0;
   
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,28 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Teste', style: GoogleFonts.roboto()),
       ),
-      body: Center(child: Text(palavraGerada, style: GoogleFonts.acme(fontSize: 60))),
+      body: Container(
+        color: Color.fromARGB(255, 204, 78, 73),
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.fromLTRB(8, 0, 0, 0), // respiro
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(palavraGerada, style: GoogleFonts.acme(fontSize: 40, color: Colors.white)),
+            Text("Quantidade de clicks foi de $quantidadeClicks", style: GoogleFonts.acme(fontSize: 20, color: Colors.white)),
+          ],
+        ),
+      ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_box),
         onPressed:  () {
           setState(() {
             palavraGerada= GeradorCoisasAleatorias.geraPalavraAleatoria();
             numeroGerado=GeradorCoisasAleatorias.geraNumeroAletorio();
+            quantidadeClicks+=1;
             // print(palavraGerada);
           });
 
