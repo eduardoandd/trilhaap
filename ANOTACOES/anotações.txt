@@ -1,1 +1,5 @@
 No flutter tudo é widget.
+
+Expanded: Organiza espaço ocupado por itens em rows, columns e flex, 
+          fazendo com que ocupe espaço vagos dentro do seu pai.
+
