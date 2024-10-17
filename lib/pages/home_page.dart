@@ -42,9 +42,9 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
               children: [
-                Container(color: Colors.green, child:Text("10")),
-                Container(color: Colors.pink, child:Text("20")),
-                Container(color: Colors.blue, child:Text("30")),
+                Expanded(flex: 1,child: Container(color: Colors.green, child:Text("Nome"))),
+                Expanded(flex: 2,child: Container(color: Colors.pink, child:Text("Eduardo Andrade"))),
+                Expanded(child: Container(color: Colors.blue, child:Text("30")))
               ],
             )
           ],
