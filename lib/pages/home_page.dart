@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(flex: 1,child: Container(color: Colors.green, child:Text("Nome"))),
                 Expanded(flex: 2,child: Container(color: Colors.pink, child:Text("Eduardo Andrade"))),
-                Expanded(child: Container(color: Colors.blue, child:Text("30")))
+                SizedBox(width: 100, height: 100, child: Expanded(child: Container(color: Colors.blue, child:Center(child: Text("30")))))
               ],
             )
           ],
