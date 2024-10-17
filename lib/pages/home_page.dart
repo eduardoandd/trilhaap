@@ -24,16 +24,29 @@ class _HomePageState extends State<HomePage> {
         title: Text('Teste', style: GoogleFonts.roboto()),
       ),
       body: Container(
+
         color: Color.fromARGB(255, 204, 78, 73),
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         padding: const EdgeInsets.fromLTRB(8, 0, 0, 0), // respiro
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
+
           children: [
             Text(palavraGerada, style: GoogleFonts.acme(fontSize: 40, color: Colors.white)),
             Text("Quantidade de clicks foi de $quantidadeClicks", style: GoogleFonts.acme(fontSize: 20, color: Colors.white)),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+              children: [
+                Container(color: Colors.green, child:Text("10")),
+                Container(color: Colors.pink, child:Text("20")),
+                Container(color: Colors.blue, child:Text("30")),
+              ],
+            )
           ],
         ),
       ),
