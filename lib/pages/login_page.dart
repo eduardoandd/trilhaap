@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 17, 17, 17),
 
         body: SizedBox(
           width: double.infinity,
@@ -59,34 +59,50 @@ class _LoginPageState extends State<LoginPage> {
 
               Container(
                 margin:  EdgeInsets.symmetric(horizontal: 30),
-                // color: Colors.white,
                 height: 30,
-
-                child: Row(
-                  children: [
-                    Expanded(child: Text("Informe seu email:", style: TextStyle(color: Colors.white, fontSize: 17))),
-                    Expanded(child: Text("Email", style: TextStyle(color: Colors.white, fontSize: 17))),
-
-                    SizedBox(height: 30,),
-
-
-                  ]
+                child: TextField(
+                  decoration: InputDecoration(
+                    contentPadding:EdgeInsets.only(top:0),
+                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 104, 57, 114))),
+                    hintText: "Email",
+                    hintStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Color.fromARGB(255, 104, 57, 114),
+                    ),
+                  ),
                 ),
+
               ),
 
-              SizedBox(height: 5,),
+              SizedBox(height: 26,),
 
               Container(
                 margin:  EdgeInsets.symmetric(horizontal: 30),
                 // color: Colors.white,
                 height: 30,
+                child: TextField(
+                  decoration: InputDecoration(
+                    contentPadding:EdgeInsets.only(top:0),
+                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 104, 57, 114))),
+                    hintText: "Senha",
+                    hintStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 104, 57, 114),
+                    ),
+                    suffixIcon: Icon(
+                      Icons.visibility,
+                      color: Color.fromARGB(255, 104, 57, 114),
+                    ),
 
-                child: Row(
-                  children: [
-                    Expanded(child: Text("Informe sua senha:", style: TextStyle(color: Colors.white, fontSize: 17))),
-                    Expanded(child: Text("Senha", style: TextStyle(color: Colors.white, fontSize: 17))),
-                  ]
+                  ),
                 ),
+
+
+               
               ),
 
               SizedBox(height: 30,),
@@ -112,8 +128,11 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(child: Container()),
 
               Container(child:Text("Esqueci a senha", style: TextStyle(color: Colors.yellow, fontSize: 17),)),
+
               SizedBox(height:10 ,),
+
               Container(child:Text("Criar conta", style: TextStyle(color: Colors.green),)),
+
               SizedBox(height:70 ,),
 
 

@@ -53,34 +53,62 @@ class _LoginPageState extends State<LoginPage> {
 
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30),
-                color: Color.fromARGB(255, 238, 112, 112),
-                height: 30,
+                // color: Color.fromARGB(255, 238, 112, 112),
+                height: 50,
                 width: double.infinity,
                 alignment: Alignment.center,
 
-                child: Row(
-                  children: [
-                    Expanded(flex:2, child:Text("Informe seu email", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),),
-                  ],
-                ),
+                child:TextField(
+                  decoration: InputDecoration(
+                    contentPadding:EdgeInsets.only(top:0),
+                    hintText: 'Email..',
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255))),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 238, 112, 112),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      size:38,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                )
               ),
 
               SizedBox(height:10 ,),
 
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30),
-                color: Color.fromARGB(255, 238, 112, 112),
-                height: 30,
+                // color: Color.fromARGB(255, 238, 112, 112),
+                height: 50,
                 width: double.infinity,
                 alignment: Alignment.center,
+                // child:Text("Informe a senha", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),),
+                child:TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Password..',
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255))),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 238, 112, 112),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    suffixIcon: Icon(
+                      Icons.visibility,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                )
                 
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex:2,
-                      child:Text("Informe a senha", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),),
-                  ],
-                ),
+               
               ),
 
               SizedBox(height:30 ,),
