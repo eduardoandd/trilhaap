@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_import, implementation_imports, prefer_const_literals_to_create_immutables
 
-import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  var emailController= TextEditingController(text:"eduardo.andrade@gmail.com");
-  var senhaController= TextEditingController();
+  var emailController= TextEditingController(text:"");
+  var senhaController= TextEditingController(text:"");
   bool isObsercure = true;
 
   @override
@@ -147,6 +146,15 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: TextButton(
                         onPressed: () {
+                          if(emailController.text.trim()=="email" && senhaController.text.trim()=="123"){
+                            debugPrint("Logado");
+                          }
+                          else{
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Erro ao efetuar o login"))
+                            );
+                          }
+
                           debugPrint(emailController.text);
                           debugPrint(senhaController.text);
                         },
