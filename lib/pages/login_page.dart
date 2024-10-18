@@ -93,18 +93,27 @@ class _LoginPageState extends State<LoginPage> {
 
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30),
-                color: Colors.green,
-                height: 40,
+                // color: Colors.green,
+                // height: 40,
                 alignment:  Alignment.center,
 
-                child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700 ),),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 104, 57, 114))
+                    ),
+                    child:Text("Login", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700 ),),),
+                ),
               ),
 
               Expanded(child: Container()),
 
               Container(child:Text("Esqueci a senha", style: TextStyle(color: Colors.yellow, fontSize: 17),)),
               SizedBox(height:10 ,),
-              Container(child:Text("Criar conta", style: TextStyle(color: Colors.green, fontSize: 17),)),
+              Container(child:Text("Criar conta", style: TextStyle(color: Colors.green),)),
               SizedBox(height:70 ,),
 
 
