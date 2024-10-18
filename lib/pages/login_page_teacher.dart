@@ -6,6 +6,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:trilhaap/pages/main_page_teacher.dart';
 import 'login_page.dart' as login;
 
 
@@ -146,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                       child:TextButton(
                         onPressed: () {
                           if( emailController.text.trim() == "email" && senhaController.text.trim() == "123" ){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => login.LoginPage()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPageTeacher()));
                           }
                           else{
                             ScaffoldMessenger.of(context).showSnackBar(
