@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_import, implementation_imports, prefer_const_literals_to_create_immutables
 
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -14,8 +16,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  String email='';
-  String senha='';
+  var emailController= TextEditingController(text:"eduardo.andrade@gmail.com");
+  var senhaController= TextEditingController();
   bool isObsercure = true;
 
   @override
@@ -68,11 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                     margin:  EdgeInsets.symmetric(horizontal: 30),
                     height: 30,
                     child: TextField(
-                      onChanged: (value){
-                        email=value;
-                        // print(email);
+                      onChanged: (value) {
+                        debugPrint(value);
                       },
-                      
+
+                      controller: emailController,
                       style: TextStyle(color: Colors.white), 
                       decoration: InputDecoration(
                         contentPadding:EdgeInsets.only(top:0),
@@ -96,10 +98,12 @@ class _LoginPageState extends State<LoginPage> {
                     // color: Colors.white,
                     height: 30,
                     child: TextField(
-                      onChanged: (value){
-                        senha=value;
-                        // print(email);
+
+                      onChanged: (value) {
+                        debugPrint(value);
                       },
+
+                      controller: senhaController,
                       style: TextStyle(color: Colors.white), 
                       obscureText: isObsercure,
                       decoration: InputDecoration(
@@ -142,7 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                     child: SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                        onPressed: () {print(email); print(senha);},
+                        onPressed: () {
+                          debugPrint(emailController.text);
+                          debugPrint(senhaController.text);
+                        },
+
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                           backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 104, 57, 114))
