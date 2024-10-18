@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'expanded_pratica.dart';
 import 'home_page.dart' as home;
-import 'login_page.dart';
+import 'login_page_teacher.dart';
+import 'login_page.dart' as login;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      home: const PraticandoExpanded(),
+      home: const login.LoginPage(),
     );
   }
 }
