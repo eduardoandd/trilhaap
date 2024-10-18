@@ -15,6 +15,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  bool isObsercure= true;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -90,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
                     // child:Text("Informe a senha", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),),
                     child:TextField(
+                      obscureText: isObsercure,
                       decoration: InputDecoration(
                         hintText: 'Password..',
                         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 255, 255, 255))),
@@ -103,9 +107,17 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.lock,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility,
-                          color: Color.fromARGB(255, 255, 255, 255),
+                        suffixIcon: GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              isObsercure= !isObsercure;
+                            });
+                          },
+
+                          child: Icon(
+                            isObsercure? Icons.visibility_off : Icons.visibility,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                         ),
                       ),
                     )

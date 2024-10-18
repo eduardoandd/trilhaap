@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String email='';
   String senha='';
+  bool isObsercure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,8 @@ class _LoginPageState extends State<LoginPage> {
                         email=value;
                         // print(email);
                       },
-
+                      
+                      style: TextStyle(color: Colors.white), 
                       decoration: InputDecoration(
                         contentPadding:EdgeInsets.only(top:0),
                         enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
@@ -98,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                         senha=value;
                         // print(email);
                       },
-
+                      style: TextStyle(color: Colors.white), 
+                      obscureText: isObsercure,
                       decoration: InputDecoration(
                         contentPadding:EdgeInsets.only(top:0),
                         enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
@@ -109,9 +112,16 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.lock,
                           color: Color.fromARGB(255, 104, 57, 114),
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility,
-                          color: Color.fromARGB(255, 104, 57, 114),
+                        suffixIcon: GestureDetector(    
+                          onTap: () {
+                            setState(() {
+                              isObsercure= !isObsercure;
+                            });
+                          },
+                          child: Icon(
+                            isObsercure ? Icons.visibility_off : Icons.visibility,
+                            color: Color.fromARGB(255, 104, 57, 114),
+                          ),
                         ),
 
                       ),
