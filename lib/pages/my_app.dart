@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'expanded_pratica.dart';
 import 'main_page.dart' as home;
-import 'login_page_teacher.dart' as teacher;
+import 'teacher/login_page_teacher.dart' as teacher;
 import 'login_page.dart' as login;
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      home: const login.LoginPage(),
+      home: const teacher.LoginPage(),
     );
   }
 }

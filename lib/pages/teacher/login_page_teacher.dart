@@ -6,8 +6,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trilhaap/pages/main_page_teacher.dart';
-import 'login_page.dart' as login;
+import 'package:trilhaap/pages/teacher/main_page_teacher.dart';
+import '../login_page.dart' as login;
 
 
 class LoginPage extends StatefulWidget {

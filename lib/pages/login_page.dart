@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/main_page.dart';
-import 'login_page_teacher.dart' as teacher;
+import 'teacher/login_page_teacher.dart' as teacher;
 
 
 class LoginPage extends StatefulWidget {

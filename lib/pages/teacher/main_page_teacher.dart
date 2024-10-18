@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:trilhaap/pages/verbs_teacher.dart';
+import 'package:trilhaap/pages/teacher/anous_teacher_page.dart';
+import 'package:trilhaap/pages/teacher/random_word._teacher_page.dart';
+import 'package:trilhaap/pages/teacher/verbs_teacher_page.dart';
 
 class MainPageTeacher extends StatefulWidget {
   const MainPageTeacher({Key? key}) : super(key: key);
@@ -52,7 +54,7 @@ class _MainPageTeacherState extends State<MainPageTeacher> {
                     onTap:() {
                       Navigator.pop(context);
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const 
-                      VerbsTeacher(texto: "Verbs")));
+                      VerbsTeacherPage(texto: "Verbs")));
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 5),
@@ -61,14 +63,22 @@ class _MainPageTeacherState extends State<MainPageTeacher> {
                     ),
                   ),
                   const Divider(color: Color.fromARGB(255, 112, 111, 111),),
-
-
-
-
-
-
                 ]),
             ),
+          ),
+
+          body: PageView(
+            children: [
+              // Container(
+              //   child:VerbsTeacherPage(texto: 'Verbs',) ,
+              // ),
+              Container(
+                child: AnounsTeacherPage(texto: "Anouns"),
+              ),
+              Container(
+                child: RandomWordTeacherPage(texto: "Random word"),
+              ),
+            ],
           ),
       )
     );
