@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/main_page.dart';
+import 'login_page_teacher.dart' as teacher;
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -148,6 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           if(emailController.text.trim()=="email" && senhaController.text.trim()=="123"){
                             debugPrint("Logado");
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const teacher.LoginPage()));
                           }
                           else{
                             ScaffoldMessenger.of(context).showSnackBar(

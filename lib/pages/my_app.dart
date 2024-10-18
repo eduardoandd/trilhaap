@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'expanded_pratica.dart';
-import 'home_page.dart' as home;
+import 'main_page.dart' as home;
 import 'login_page_teacher.dart' as teacher;
 import 'login_page.dart' as login;
 

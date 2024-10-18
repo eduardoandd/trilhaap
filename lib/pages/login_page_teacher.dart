@@ -6,6 +6,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'login_page.dart' as login;
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   bool isObsercure= true;
+  var emailController = TextEditingController(text: "");
+  var senhaController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
 
                     child:TextField(
+
+                      controller: emailController,
                       decoration: InputDecoration(
                         contentPadding:EdgeInsets.only(top:0),
                         hintText: 'Email..',
@@ -93,6 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
                     // child:Text("Informe a senha", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500)),),
                     child:TextField(
+
+                      controller: senhaController,
                       obscureText: isObsercure,
                       decoration: InputDecoration(
                         hintText: 'Password..',
@@ -129,15 +137,23 @@ class _LoginPageState extends State<LoginPage> {
 
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
-                    // color: Colors.green,
-                    // height: 40,
+                    
                     width: double.infinity,
                     alignment: Alignment.center,
                     
                     child: SizedBox(
                       width: double.infinity,
                       child:TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if( emailController.text.trim() == "email" && senhaController.text.trim() == "123" ){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => login.LoginPage()));
+                          }
+                          else{
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Erro"))
+                            );
+                          }
+                        },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
                           backgroundColor: MaterialStateProperty.all(Colors.green),
