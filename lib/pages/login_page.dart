@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           if(emailController.text.trim()=="email" && senhaController.text.trim()=="123"){
                             debugPrint("Logado");
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
                           }
                           else{
                             ScaffoldMessenger.of(context).showSnackBar(

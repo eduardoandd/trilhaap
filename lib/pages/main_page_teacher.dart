@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/verbs_teacher.dart';
 
 class MainPageTeacher extends StatefulWidget {
   const MainPageTeacher({Key? key}) : super(key: key);
@@ -48,7 +49,11 @@ class _MainPageTeacherState extends State<MainPageTeacher> {
                   const SizedBox(height: 10,),
 
                   InkWell(
-                    onTap:() {},
+                    onTap:() {
+                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const 
+                      VerbsTeacher(texto: "Verbs")));
+                    },
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 5),
                       width: double.infinity,

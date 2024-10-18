@@ -9,7 +9,7 @@ class DadosCadastraisPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(appBar: AppBar(title: Text(texto),),body: Center(child: Text("teste")),);
+    return Scaffold(appBar: AppBar(title: Text(texto),),body: Center(child: Text(texto)),);
     
   }
 }

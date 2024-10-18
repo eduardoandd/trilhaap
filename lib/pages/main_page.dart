@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/pagina1.dart';
+import 'package:trilhaap/pages/pagina2.dart';
 
 import 'dados_cadastrais.dart';
 
@@ -58,11 +60,22 @@ class _MainPageState extends State<MainPage> {
                     child: Text("Configurações"))
                   ,onTap: () {},),
                 Divider(color: Color.fromARGB(255, 187, 184, 184),),
-
-                
               ],
             ),
           ),
+        ),
+        body: PageView(
+          children: [
+            Container(
+              child:Pagina1Page()
+            ),
+            Container(
+              child: Pagina2Page(),
+            ),
+            Container(
+              color: Colors.green
+            ),
+          ],
         ),
       ),
     );
