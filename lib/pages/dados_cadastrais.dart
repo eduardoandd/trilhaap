@@ -3,19 +3,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/repositories/nivel_repository.dart';
 
 import '../shared/widgets/text_label.dart';
 
-class DadosCadastraisPage extends StatelessWidget {
-  // final String texto;
-  TextEditingController nomeController = TextEditingController(text: "");
-  TextEditingController dataController = TextEditingController(text: "");
-  DateTime? dataNascimento;
+class DadosCadastraisPage extends StatefulWidget {
 
   DadosCadastraisPage({Key? key}) : super(key: key);
 
+  @override
+  State<DadosCadastraisPage> createState() => _DadosCadastraisPageState();
+}
+
+class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
+  // final String texto;
+  TextEditingController nomeController = TextEditingController(text: "");
+
+  TextEditingController dataController = TextEditingController(text: "");
+
+  DateTime? dataNascimento;
+
+  var niveis = [];
+  var nivelRepository= NivelRepository();
+  var nivelSelecionado = "";
 
   @override
+  void initState() {
+    niveis = nivelRepository.retornaNiveis();
+    super.initState();
+  }
+
+  @override
+  
   Widget build(BuildContext context) {
 
     return Scaffold(appBar: AppBar(title: Text("Meus dados"),),
@@ -53,6 +72,26 @@ class DadosCadastraisPage extends StatelessWidget {
                 }
               },
             ),
+            TextLabel(texto: "Nível de experiência"),
+
+            Column(
+              children:
+                niveis.map(
+                  (nivel) => RadioListTile(
+                  title: Text(nivel.toString()),
+                  selected: nivelSelecionado == nivel,
+                  value: nivel.toString(), 
+                  groupValue: nivelSelecionado, 
+                  onChanged: (value){
+                    print(value);
+                    setState(() {
+                      nivelSelecionado=value.toString();
+                    });
+                  }
+                ),
+              ).toList(),
+            ),
+       
             TextButton(onPressed: (){print(nomeController.text);}, child: Text("Salvar"))
             
           ] 
