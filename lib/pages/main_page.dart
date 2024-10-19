@@ -16,6 +16,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+
+  PageController Pagecontroller = PageController(initialPage: 0);
+  int posicaoPagina =0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,17 +68,42 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ),
-        body: PageView(
+        body: Column(
           children: [
-            Container(
-              child:Pagina1Page()
+            Expanded(
+              child: PageView(
+                controller: Pagecontroller,
+                onPageChanged: (value){
+
+                  setState(() {
+                    posicaoPagina=value;
+                  });
+                },
+
+                children: [
+                  Container(
+                    child:Pagina1Page()
+                  ),
+                  Container(
+                    child: Pagina2Page(),
+                  ),
+                  Container(
+                    color: Colors.green
+                  ),
+                ],
+              ),
             ),
-            Container(
-              child: Pagina2Page(),
-            ),
-            Container(
-              color: Colors.green
-            ),
+
+            BottomNavigationBar(
+              
+              onTap:(value) {Pagecontroller.jumpToPage(value);
+              } ,
+
+              currentIndex: posicaoPagina,items: [
+              BottomNavigationBarItem(label: "page1", icon: Icon(Icons.add)),
+              BottomNavigationBarItem(label: "page1", icon: Icon(Icons.home)),
+              BottomNavigationBarItem(label: "page1", icon: Icon(Icons.person)),
+            ])
           ],
         ),
       ),
