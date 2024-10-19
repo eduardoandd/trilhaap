@@ -39,9 +39,7 @@ class _MainPageState extends State<MainPage> {
                     child: Text("Dados cadastrais"))
                   ,onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const DadosCadastraisPage(
-                      texto: "Meus dados"
-                    )));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisPage()));
                   },),
                 Divider(color: Color.fromARGB(255, 187, 184, 184),),
 

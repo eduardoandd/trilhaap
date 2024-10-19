@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:trilhaap/pages/teacher/main_page_teacher.dart';
+import 'package:trilhaap/pages/teacher/register_teacher_page.dart';
 import '../login_page.dart' as login;
 
 
@@ -185,7 +186,16 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     alignment: Alignment.center,
                     
-                    child: Text("Get Started",  style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w900)),
+                    child: InkWell (
+                      child: Text(
+                        "Get Started",  
+                        style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w900),
+                      ),
+
+                      onTap:(){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPageTeacher()));
+                      }
+                    ),
                   ),
 
                   SizedBox(height:60 ,),
