@@ -121,15 +121,22 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                   },
                 ),).toList()
             ),
-            TextLabel(texto: "Linguagens preferidas"), 
+            TextLabel(texto: "Pretensão salarial R\$ ${salarioEscolhido.round().toString()}"), 
             Slider(
               min:1000,
-              max: 100000,
+              max: 50000,
               value: salarioEscolhido, 
               onChanged:(double value) {
-
                 setState(() {
-                  salarioEscolhido=value;
+                  salarioEscolhido = (value / 100).round() * 100;
+                  if (salarioEscolhido > 10000 && salarioEscolhido < 30000){
+                    salarioEscolhido=(value / 500).round() * 500;
+                  }
+                  else if(salarioEscolhido > 30000){
+                    salarioEscolhido=(value / 1000).round() * 1000;
+                  }
+
+                  // print(salarioEscolhido);
                 });
               }
             ),
