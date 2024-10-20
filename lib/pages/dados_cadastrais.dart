@@ -30,6 +30,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var nivelSelecionado = "";
   var linguagens = [];
   var linguagensSelecionadas = [];
+  double salarioEscolhido=1000;
 
   @override
   void initState() {
@@ -98,9 +99,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
               
             ),
 
-            TextLabel(texto: "Linguagens preferidas"),
-            
-
+            TextLabel(texto: "Linguagens preferidas"), 
             Column(
               children: linguagens.map((linguagem) => CheckboxListTile(
                   title: Text(linguagem),
@@ -110,7 +109,6 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                       setState(() {
                         linguagensSelecionadas.add(linguagem);
                         print(linguagem);
-                      
                       });
                     }
                     else{
@@ -122,11 +120,20 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                     }
                   },
                 ),).toList()
-              
             ),
-       
+            TextLabel(texto: "Linguagens preferidas"), 
+            Slider(
+              min:1000,
+              max: 100000,
+              value: salarioEscolhido, 
+              onChanged:(double value) {
+
+                setState(() {
+                  salarioEscolhido=value;
+                });
+              }
+            ),
             TextButton(onPressed: (){print(nomeController.text);}, child: Text("Salvar"))
-            
           ] 
         ),
       ),
