@@ -32,11 +32,27 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagensSelecionadas = [];
   double salarioEscolhido=1000;
 
+  int tempoExperiencia=0;
+
   @override
   void initState() {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagens();
     super.initState();
+  }
+
+  // ESPECIFICA O TIPO DE RETORNO
+  List<DropdownMenuItem<int>> returnItens(int quantidade_maxima){
+    var itens = <DropdownMenuItem<int>>[];
+
+    for(var i = 0; i <= quantidade_maxima; i++){
+      itens.add(DropdownMenuItem(
+          child: Text(i.toString()),
+          value: i,
+        )
+      );
+    }
+    return itens;
   }
 
   @override
@@ -99,6 +115,21 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
               
             ),
 
+            
+            TextLabel(texto: "Tempo de experiencia"),
+            DropdownButton(
+              value: tempoExperiencia,
+              isExpanded: true,
+              items: returnItens(50),
+              onChanged:(value) {
+                setState(() {
+                  tempoExperiencia = int.parse(value.toString());
+                });
+              }
+            ),
+              
+            
+
             TextLabel(texto: "Linguagens preferidas"), 
             Column(
               children: linguagens.map((linguagem) => CheckboxListTile(
@@ -121,6 +152,8 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                   },
                 ),).toList()
             ),
+
+
             TextLabel(texto: "Pretensão salarial R\$ ${salarioEscolhido.round().toString()}"), 
             Slider(
               min:1000,
