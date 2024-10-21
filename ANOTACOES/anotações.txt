@@ -6,4 +6,6 @@ Expanded: Organiza espaço ocupado por itens em rows, columns e flex,
 
 ETAPA 1 -> Primeiros componentes - completo
 ETAPA 2 -> tela de login, páginas, drawer e navegação - completo
-ETAPA  -> interação com o usuário
+ETAPA 3 -> interação com o usuário
+ETAPA 4 -> Exibição de dados.
+

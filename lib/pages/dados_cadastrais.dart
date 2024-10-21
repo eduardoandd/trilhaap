@@ -115,9 +115,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                 ),
               ).toList(),
               
-            ),
-
-            
+            ),            
             TextLabel(texto: "Tempo de experiencia"),
             DropdownButton(
               hint: Text(""),
@@ -130,9 +128,6 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                 });
               }
             ),
-              
-            
-
             TextLabel(texto: "Linguagens preferidas"), 
             Column(
               children: linguagens.map((linguagem) => CheckboxListTile(
@@ -213,8 +208,6 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                     // });
                   Navigator.pop(context);
                 });
-                
-                
               }, 
               
               child: Text("Salvar"))

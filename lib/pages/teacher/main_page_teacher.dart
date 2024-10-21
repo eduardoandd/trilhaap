@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/teacher/anous_teacher_page.dart';
 import 'package:trilhaap/pages/teacher/random_word._teacher_page.dart';
 import 'package:trilhaap/pages/teacher/verbs_teacher_page.dart';
+import 'package:trilhaap/shared/widgets/teacher/custom_drawer.dart';
 
 class MainPageTeacher extends StatefulWidget {
   const MainPageTeacher({Key? key}) : super(key: key);
@@ -24,52 +25,7 @@ class _MainPageTeacherState extends State<MainPageTeacher> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Random Word")),
-          drawer: Drawer(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap:() {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      width: double.infinity,
-                      child: Text("Books", style: TextStyle(fontSize: 18),),
-                    ),
-                  ),
-                  const Divider(color: Color.fromARGB(255, 112, 111, 111),),
-
-                  const SizedBox(height: 10,),
-
-                  InkWell(
-                    onTap:() {},
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      width: double.infinity,
-                      child: Text("Anouns", style: TextStyle(fontSize: 18),),
-                    ),
-                  ),
-                  const Divider(color: Color.fromARGB(255, 112, 111, 111),),
-
-                  const SizedBox(height: 10,),
-
-                  InkWell(
-                    onTap:() {
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const 
-                      VerbsTeacherPage(texto: "Verbs")));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      width: double.infinity,
-                      child: Text("Verbs.", style: TextStyle(fontSize: 18),),
-                    ),
-                  ),
-                  const Divider(color: Color.fromARGB(255, 112, 111, 111),),
-                ]),
-            ),
-          ),
+          drawer: CustonDrawerTeacher(),
 
           body: Column(
             children: [
