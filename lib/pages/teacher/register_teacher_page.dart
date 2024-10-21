@@ -21,6 +21,8 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
   TextEditingController nameController = TextEditingController(text: "");
   TextEditingController dataController = TextEditingController(text: "");
 
+  DateTime? dateOfBirthiday;
+
   var expLevelsRepository = expTeacherRepository();
   var expLevels=[];
   var selectedExp = "";
@@ -30,6 +32,8 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
   var hobbiesRepository = HobbiesTeacherRepository();
   var hobbies = [];
   var selectedHobbies= [];
+
+  bool salvando = false;
 
   @override
   void initState() {
@@ -42,6 +46,7 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
     var levels=expLevelsRepository.GetExpLevels();
     var itens = <DropdownMenuItem<int>>[];
     int index =0;
+
 
     levels.forEach((level) {
       itens.add(DropdownMenuItem(
@@ -63,9 +68,9 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
 
-        child: ListView(
+        child: salvando ? Center(child: CircularProgressIndicator()) :ListView(
           // crossAxisAlignment: CrossAxisAlignment.start,
-
+        
           children: [
             TextLabel(texto: "Name"),
             TextField(
@@ -95,6 +100,7 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
 
                 if (data != null){
                   dataController.text=data.toString();
+                  dateOfBirthiday=data;
                 }
               },
             ),
@@ -152,7 +158,46 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
                 ).toList(),
             ),
 
-            TextButton(onPressed: (){print(nameController.text);}, child: Text("Salvar"))
+            TextButton(onPressed: (){
+              setState(() {
+                salvando=false;
+              });
+
+              if(nameController.text.trim() == ""){
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('O campo "name" deve ser preenchido')));
+                  return;
+              }
+              if(dateOfBirthiday == null){
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('O campo "Date of Birthday" deve ser preenchido')));
+                  return;
+              }
+              if( expTime == null){
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('O campo "Exp" deve ser preenchido')));
+                  return;
+              }
+              if( selectedHobbies.isEmpty){
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('O campo "What do you like to do?" deve ser preenchido')));
+                  return;
+              }
+
+              setState(() {
+                salvando=true;
+              });
+              Future.delayed(Duration(seconds: 2), (){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Data saved successfully")));
+                    // setState(() {
+                    //   salvando=false;
+                    // });
+                  Navigator.pop(context);
+                });
+
+
+            }, child: Text("Save"))
           ]
         ),
 
