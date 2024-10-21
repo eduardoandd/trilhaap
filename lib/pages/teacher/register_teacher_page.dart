@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -19,13 +19,13 @@ class RegisterPageTeacher extends StatefulWidget {
 
 class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
   TextEditingController nameController = TextEditingController(text: "");
-
   TextEditingController dataController = TextEditingController(text: "");
 
   var expLevelsRepository = expTeacherRepository();
   var expLevels=[];
   var selectedExp = "";
   var levels = [];
+  int? expTime;
 
   var hobbiesRepository = HobbiesTeacherRepository();
   var hobbies = [];
@@ -36,6 +36,23 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
     expLevels = expLevelsRepository.GetExpLevels();
     hobbies = hobbiesRepository.GetHobbies();
     super.initState();
+  }
+
+  List<DropdownMenuItem<int>> returnItens(){
+    var levels=expLevelsRepository.GetExpLevels();
+    var itens = <DropdownMenuItem<int>>[];
+    int index =0;
+
+    levels.forEach((level) {
+      itens.add(DropdownMenuItem(
+        child: Text(level),
+        value:index,
+      ));
+
+      index++;
+    });
+
+    return itens;
   }
 
   @override
@@ -53,14 +70,20 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
             TextLabel(texto: "Name"),
             TextField(
               controller:nameController ,
+              decoration: InputDecoration(
+                hintText: "Seu nome..."
+              ),
             ),
 
             SizedBox(height: 10,),
 
-            TextLabel(texto: "Data de nascimento:"),
+            TextLabel(texto: "Date of Birth:"),
             TextField(
               controller:dataController ,
               readOnly: true,
+              decoration: InputDecoration(
+                hintText: "Data de nascimento..."
+              ),
 
               onTap: () async {
                 var data = await showDatePicker(
@@ -77,21 +100,39 @@ class _RegisterPageTeacherState extends State<RegisterPageTeacher> {
             ),
             TextLabel(texto: "Exp."),
 
-            Column(
-              children: expLevels.map(
-                (level) => RadioListTile(
-                  title: Text(level.toString()),
-                  selected: selectedExp == level,
-                  value: level.toString(),
-                  groupValue: selectedExp,
-                  onChanged: (value){
-                    setState(() {
-                      selectedExp=value.toString();
-                    });
-                  },
-                )).toList()
+            DropdownButton(
+              hint: Text("Nível de experiência"),
+              value: expTime,
+              isExpanded: true,
+              items: returnItens(), 
+              onChanged:(value){
+                setState(() {
+                  expTime = int.parse(value.toString());
+                });
+              }
             ),
-            TextLabel(texto: "What do you like to do?"),
+
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top:15),
+                    child: 
+                    Text(
+                      "What do you like to do?", 
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    )),
+                    Container(
+                    margin: EdgeInsets.only(top:3),
+                      child: Text(
+                        'O que você gosta de fazer?', 
+                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 118, 117, 117)),
+                      ),
+                    ),
+                ]),
+            ),
             Column(
               children: hobbies.map(
                 (hobby) => CheckboxListTile(
