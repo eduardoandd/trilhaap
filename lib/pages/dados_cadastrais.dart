@@ -32,7 +32,9 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagensSelecionadas = [];
   double salarioEscolhido=1000;
 
-  int tempoExperiencia=0;
+  int? tempoExperiencia=0;
+
+  bool salvando = false;
 
   @override
   void initState() {
@@ -66,7 +68,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
 
-        child: ListView(
+        child: salvando? Center(child: CircularProgressIndicator()) : ListView(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children:[
             TextLabel(texto: "Nome"), // WIDGET PERSONALIZADO
@@ -118,6 +120,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
             
             TextLabel(texto: "Tempo de experiencia"),
             DropdownButton(
+              hint: Text(""),
               value: tempoExperiencia,
               isExpanded: true,
               items: returnItens(50),
@@ -173,7 +176,48 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                 });
               }
             ),
-            TextButton(onPressed: (){print(nomeController.text);}, child: Text("Salvar"))
+            TextButton(
+              onPressed: (){
+                setState(() {
+                  salvando=false;
+                });
+
+                if(nomeController.text.trim() == ""){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("O nome deve ser preenchido")));
+                    return;
+                }
+                if(dataNascimento == null){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Data de nascimento deve ser preenchida")));
+                    return;
+                }
+                if(nivelSelecionado.trim() == ""){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("O nível de experiencia deve ser preenchido")));
+                    return;
+                }
+                if(linguagensSelecionadas.isEmpty){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Sua linguagem preferida deve ser preenchido")));
+                    return;
+                }
+                setState(() {
+                  salvando=true;
+                });
+                Future.delayed(Duration(seconds: 2), (){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Dados salvos com sucesso")));
+                    // setState(() {
+                    //   salvando=false;
+                    // });
+                  Navigator.pop(context);
+                });
+                
+                
+              }, 
+              
+              child: Text("Salvar"))
           ] 
         ),
       ),
