@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Pagina1Page extends StatefulWidget {
-  const Pagina1Page({Key? key}) : super(key: key);
+class CardPage extends StatefulWidget {
+  const CardPage({Key? key}) : super(key: key);
 
   @override
-  State<Pagina1Page> createState() => _Pagina1PageState();
+  State<CardPage> createState() => _Pagina1PageState();
 }
 
-class _Pagina1PageState extends State<Pagina1Page> {
+class _Pagina1PageState extends State<CardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.green,
+      // backgroundColor:Colors.green,
 
       body:Center(
         child: Container(

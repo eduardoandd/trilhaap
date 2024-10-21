@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/login_page.dart';
 
 import '../../pages/dados_cadastrais.dart';
 
@@ -68,7 +69,7 @@ class CustonDrawer extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisPage()));
                 },),
-              Divider(color: Color.fromARGB(255, 187, 184, 184),),
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
 
               SizedBox(height: 10,),
 
@@ -109,7 +110,7 @@ class CustonDrawer extends StatelessWidget {
                     );
                   });
                 },),
-              Divider(color: Color.fromARGB(255, 187, 184, 184),),
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
 
               SizedBox(height: 10,),
 
@@ -125,7 +126,57 @@ class CustonDrawer extends StatelessWidget {
                     ],
                   ))
                 ,onTap: () {},),
-              Divider(color: Color.fromARGB(255, 187, 184, 184),),
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.exit_to_app),
+                      SizedBox(width: 5,),
+                      const Text("Sair"),
+                    ],
+                  )),
+                  onTap: () {
+                    showDialog(context: context, builder: (BuildContext bc){
+                      return AlertDialog(
+                        alignment: Alignment.centerLeft,
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular((10))
+                        ),
+                        title: Text("Mep app", style: TextStyle(fontWeight: FontWeight.bold),),
+                        content: Wrap(
+                          children: [
+                            Text("Você sairá do aplicativo!"),
+                            Text("Deseja realmente sair do Aplicativo?"),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pop(context);
+                            }, 
+                            child: Text("Não")
+                          ),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.pushReplacement(
+                                context, 
+                                MaterialPageRoute(builder: (context) => LoginPage())
+                              );
+                            }, 
+                            child: Text("Sim")
+                          )
+                        ],
+                      );
+                    });
+                  },
+              ),
+
             ],
           ),
         );

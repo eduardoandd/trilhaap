@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:trilhaap/pages/pagina1.dart';
+import 'package:trilhaap/pages/card_page.dart';
 import 'package:trilhaap/pages/pagina2.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
 
                 children: [
                   Container(
-                    child:Pagina1Page()
+                    child:CardPage()
                   ),
                   Container(
                     child: Pagina2Page(),
