@@ -15,13 +15,43 @@ class CustonDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              UserAccountsDrawerHeader(
-                currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Image.network(
-                    "https://hermes.digitalinnovation.one/assets/diome/logo.png")),
-                accountName: Text("Eduardo"), 
-                accountEmail: Text("eduardo@gmail.com"),
+              InkWell(
+                onTap: (){
+                  showModalBottomSheet(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular((10))
+                    ), 
+                    builder: (BuildContext bc){
+                      return Wrap(
+                        children: [
+                          ListTile(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            title: Text("Camera"),
+                            leading: Icon(Icons.camera),
+                          ),
+                          ListTile(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            title: Text("Galeria"),
+                            leading: Icon(Icons.album),
+
+                          ),
+                        ],  
+                      );
+                  }); 
+                },
+                child: UserAccountsDrawerHeader(
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Image.network(
+                      "https://hermes.digitalinnovation.one/assets/diome/logo.png")),
+                  accountName: Text("Eduardo"), 
+                  accountEmail: Text("eduardo@gmail.com"),
+                ),
               ),
               InkWell(
                 child: Container(
@@ -53,7 +83,32 @@ class CustonDrawer extends StatelessWidget {
                       const Text("Termos de uso"),
                     ],
                   ))
-                ,onTap: () {},),
+                ,onTap: () {
+                  showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular((10))
+                    ),
+                    context: context, 
+                    builder: (BuildContext bc){
+                    return Container(
+                      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Termos de uso e privacidade",
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                          ),
+                          SizedBox(height:8),
+                          Text(
+                            "Como Deleuze eloquentemente mostrou, o início da atividade geral de formação de conceitos nos obriga a inferir a invalidez da condição de verdade de proposições elementares como ((p ^ ~q) -> (~r v (p <-> r))). Acabei de provar que o desafiador cenário globalizado marca a autonomia do pensamento em relação ao fluxo das regras de conduta normativas. Se estivesse vivo, Foucault diria que a implausibilidade da tábula rasa acarreta um processo de reformulação e modernização das condições epistemológicas e cognitivas exigidas.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+                },),
               Divider(color: Color.fromARGB(255, 187, 184, 184),),
 
               SizedBox(height: 10,),
