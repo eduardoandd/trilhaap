@@ -32,6 +32,7 @@ class CustonDrawerTeacher extends StatelessWidget {
                   
                   onTap: (){
                     showModalBottomSheet(
+                      // isScrollControlled: true,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                       ), 
@@ -40,19 +41,42 @@ class CustonDrawerTeacher extends StatelessWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                              child:CircleAvatar(
-                                radius: 50,
-                                backgroundColor: Color.fromARGB(255, 17, 30, 58),
-                                child: Image.network(
-                                    "https://hermes.digitalinnovation.one/assets/diome/logo.png"
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 20,
+                                  shadowColor: Colors.grey,
+                                  child:Container(
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                                          child: CircleAvatar(
+                                            radius: 50,
+                                            backgroundColor: Color.fromARGB(255, 17, 30, 58),
+                                            child: Image.network(
+                                                "https://hermes.digitalinnovation.one/assets/diome/logo.png"
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Text("Hi, Edu!", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),),
+                                        ),
+                                        SizedBox(height:3,),
+                                        Container(
+                                          child:Text(
+                                            textAlign: TextAlign.center,
+                                            "Do mesmo modo, a consulta aos diversos militantes ainda não demonstrou convincentemente que vai participar na mudança das condições financeiras e administrativas exigidas. As experiências acumuladas demonstram que a crescente influência da mídia aponta para a melhoria do levantamento das variáveis envolvidas. Acima de tudo, é fundamental ressaltar que a consolidação das estruturas assume importantes posições no estabelecimento de todos os recursos funcionais envolvidos. Por conseguinte, o início da atividade geral de formação de atitudes acarreta um processo de reformulação e modernização do investimento em reciclagem técnica.",
+                                            style: TextStyle(fontSize: 16)
+                                          )
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                            Container(
-                              child: Text("Hi, Edu!", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),),
-                            )
                           ],
                         );
                       }
