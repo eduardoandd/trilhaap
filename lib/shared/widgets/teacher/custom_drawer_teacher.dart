@@ -3,8 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/teacher/login_page_teacher.dart';
 
 import '../../../pages/dados_cadastrais.dart';
+
+
 
 
 class CustonDrawerTeacher extends StatelessWidget {
@@ -76,7 +79,9 @@ class CustonDrawerTeacher extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisPage()));
               },),
             Divider(color: Color.fromARGB(255, 187, 184, 184),),
-            SizedBox(height: 10,),
+
+            SizedBox(height: 5,),
+
             InkWell(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
@@ -90,7 +95,9 @@ class CustonDrawerTeacher extends StatelessWidget {
                 ))
               ,onTap: () {},),
             Divider(color: Color.fromARGB(255, 187, 184, 184),),
-            SizedBox(height: 10,),
+
+            SizedBox(height: 5,),
+
             InkWell(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
@@ -104,6 +111,57 @@ class CustonDrawerTeacher extends StatelessWidget {
                 ))
               ,onTap: () {},),
             Divider(color: Color.fromARGB(255, 187, 184, 184),),
+
+            SizedBox(height: 5,),
+
+            InkWell(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                width: double.infinity, 
+                child: Row(
+                  children: [
+                    const Icon(Icons.exit_to_app,color:Colors.white),
+                    SizedBox(width: 5,),
+                    const Text("Sair", style: TextStyle(color: Colors.white),),
+                  ],
+                ))
+              ,onTap: () {
+                showDialog(
+                  context: context, 
+                  builder: (BuildContext bc){
+                    return AlertDialog(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      title: Text("Meu app", style: TextStyle(fontWeight: FontWeight.w800),),
+                      content: Wrap(
+                        children: [
+                          Text("Você sairá do aplicativo"),
+                          Text("Deseja realmente sair do aplicativo?")
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          }, 
+                          child: Text("Não")
+                        ),
+                        TextButton(
+                          onPressed: (){
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage())
+                            );
+                          }, 
+                          child: Text("Sim")
+                        )
+                      ],
+                    );
+                  }
+                );
+              },),
           ],
         ),
       );
