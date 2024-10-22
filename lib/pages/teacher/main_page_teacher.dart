@@ -7,7 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/teacher/anous_teacher_page.dart';
 import 'package:trilhaap/pages/teacher/random_word._teacher_page.dart';
 import 'package:trilhaap/pages/teacher/verbs_teacher_page.dart';
-import 'package:trilhaap/shared/widgets/teacher/custom_drawer.dart';
+import 'package:trilhaap/shared/widgets/teacher/custom_drawer_teacher.dart';
 
 class MainPageTeacher extends StatefulWidget {
   const MainPageTeacher({Key? key}) : super(key: key);

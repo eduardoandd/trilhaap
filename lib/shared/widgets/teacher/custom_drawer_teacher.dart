@@ -21,10 +21,42 @@ class CustonDrawerTeacher extends StatelessWidget {
               decoration: BoxDecoration(
                 color:Color.fromARGB(255, 238, 112, 112)
               ),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image.network(
-                  "https://hermes.digitalinnovation.one/assets/diome/logo.png")),
+              currentAccountPicture: InkWell(
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Image.network(
+                    "https://hermes.digitalinnovation.one/assets/diome/logo.png")),
+                  
+                  onTap: (){
+                    showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      ), 
+                      context: context,
+                      builder: (BuildContext bc){
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                              child:CircleAvatar(
+                                radius: 50,
+                                backgroundColor: Color.fromARGB(255, 17, 30, 58),
+                                child: Image.network(
+                                    "https://hermes.digitalinnovation.one/assets/diome/logo.png"
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Text("Hi, Edu!", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),),
+                            )
+                          ],
+                        );
+                      }
+                      
+                    );
+                  },
+              ),
               accountName: Text("Eduardo"), 
               accountEmail: Text("eduardo@gmail.com"),
             ),
