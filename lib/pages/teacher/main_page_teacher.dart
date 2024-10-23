@@ -44,7 +44,7 @@ class _MainPageTeacherState extends State<MainPageTeacher> {
                     //   child:VerbsTeacherPage(texto: 'Verbs',) ,
                     // ),
                     Container(
-                      child: AnounsTeacherPage(texto: "Anouns"),
+                      child: AnounsTeacherPage(texto: "Bottle"),
                     ),
                     Container(
                       child: RandomWordTeacherPage(texto: "Random word"),
