@@ -22,9 +22,6 @@ class _AnounsTeacherPageState extends State<AnounsTeacherPage> {
     "Bottle", 
     "Imagem Gerada por IA."
   );
-
-  
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

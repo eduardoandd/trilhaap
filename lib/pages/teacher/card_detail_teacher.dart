@@ -28,14 +28,54 @@ class CardDetailTeacher extends StatelessWidget {
                   }, 
                   icon: Icon(Icons.close)
                 ),
-                Container(
-                  child:
-                  Text(cardDetailTeacher.imagem)
+
+                Center(
+                  child: Container(
+                    child:
+                    Text(cardDetailTeacher.word, style:TextStyle(fontSize: 30, fontWeight: FontWeight.w700))
+                  ),
                 ),
-                Container(
-                  child:
-                  Text(cardDetailTeacher.word)
-                )
+
+                SizedBox(height: 15,),
+                
+                Center(
+                  child: Card(
+                    elevation: 20,
+                    shadowColor: Colors.grey,
+
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical:15, horizontal: 20),
+                      child: Column(
+                        children: [
+                          Container(
+                            margin:EdgeInsets.only(bottom:7),
+                            child:
+                            Text(
+                              cardDetailTeacher.imagem,
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                            )
+                          ),
+                          
+                          Divider(
+                            color: Colors.grey, // Cor da linha
+                            thickness: 2,       // Espessura da linha
+                            indent: 20,         // Espaço antes da linha
+                            endIndent: 20,      // Espaço depois da linha
+                          ),
+
+                          Container(
+                            child:
+                              Image.asset(
+                                "assets/bottle.png",
+                              ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                  ),
+                ),
+               
               ],
             ),
           ),
