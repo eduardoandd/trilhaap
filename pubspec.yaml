@@ -65,6 +65,7 @@ flutter:
     - assets/logo_png.png
     - assets/dio_png.png
     - assets/bottle.png
+    - assets/health.png
     
     # - images/a_dot_ham.jpeg
 

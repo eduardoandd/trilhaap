@@ -4,7 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/card_page.dart';
-import 'package:trilhaap/pages/pagina2.dart';
+import 'package:trilhaap/pages/image_assets.dart';
+import 'package:trilhaap/pages/list_view.dart';
+import 'package:trilhaap/pages/list_view_h.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
 import 'dados_cadastrais.dart';
@@ -44,24 +46,29 @@ class _MainPageState extends State<MainPage> {
                     child:CardPage()
                   ),
                   Container(
-                    child: Pagina2Page(),
+                    child: ImageAssetsPage(),
                   ),
                   Container(
-                    color: Colors.green
+                    child: ListViewPage()
+                  ),
+                  Container(
+                    child: ListViewH()
                   ),
                 ],
               ),
             ),
 
             BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
               
               onTap:(value) {Pagecontroller.jumpToPage(value);
               } ,
 
               currentIndex: posicaoPagina,items: [
               BottomNavigationBarItem(label: "page1", icon: Icon(Icons.add)),
-              BottomNavigationBarItem(label: "page1", icon: Icon(Icons.home)),
-              BottomNavigationBarItem(label: "page1", icon: Icon(Icons.person)),
+              BottomNavigationBarItem(label: "page2", icon: Icon(Icons.home)),
+              BottomNavigationBarItem(label: "page3", icon: Icon(Icons.person)),
+              BottomNavigationBarItem(label: "page4", icon: Icon(Icons.list)),
             ])
           ],
         ),
