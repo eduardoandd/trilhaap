@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/card_detail.dart';
+import 'package:trilhaap/repositories/card_detail_repository.dart';
 
 import '../model/card_detail.dart';
 
@@ -15,14 +16,21 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
+  CardDetail? cardDetail;
+  var cardDetailRepository = CardDetailRepository();
 
-  var cardDetail=CardDetail(
-    1,
-    "Meu Card",
-    "https://hermes.digitalinnovation.one/assets/diome/logo.png",
-    "O Gerador de Lero-lero para TI e informática foi baseado no Fabuloso Gerador de Lero-lero v2.0. Ele é capaz de gerar qualquer quantidade de texto vazio e prolixo, ideal para engrossar uma tese de mestrado, impressionar seu chefe ou preparar discursos capazes de curar a insônia da platéia. Basta informar um título pomposo qualquer (nos moldes do que está sugerido aí embaixo) e a quantidade de frases desejada. Voilá! Em dois nano-segundos você terá um texto - ou mesmo um livro inteiro - pronto para impressão. Ou, se preferir, faça copy/paste para um editor de texto para formatá-lo mais sofisticadamente. Lembre-se: aparência é tudo, conteúdo é nada."
+  @override
+  void initState() {
+    super.initState();
+    carregarDados();
+  }
 
-  );
+  void carregarDados() async {
+    cardDetail = await cardDetailRepository.get();
+    setState(() {
+      
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +39,15 @@ class _CardPageState extends State<CardPage> {
         Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: InkWell(
+          child: cardDetail == null ? LinearProgressIndicator() : InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => CardDetailPage(
-                cardDetail: cardDetail,
+                cardDetail: cardDetail!,
               ))
               );
             },
             child: Hero(
-              tag: cardDetail.id,
+              tag: cardDetail!.id,
               child: Card(
                 elevation: 8,
                 shadowColor: Colors.grey,
@@ -52,10 +60,10 @@ class _CardPageState extends State<CardPage> {
                         children: [
                           Image.network(
                             height:20,
-                            cardDetail.url,
+                            cardDetail!.url,
                           ),
                           Text(
-                            cardDetail.title,
+                            cardDetail!.title,
                             style: TextStyle(
                               fontSize: 20, 
                               fontWeight: FontWeight.w700
@@ -65,7 +73,7 @@ class _CardPageState extends State<CardPage> {
                       ),
                       SizedBox(height: 10,),
                       Text(
-                        cardDetail.text,
+                        cardDetail!.text,
                         style: TextStyle(
                           fontSize: 16, fontWeight: FontWeight.normal
                         ),

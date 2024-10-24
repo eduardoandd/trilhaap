@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      home: const teacher.LoginPage(),
+      home: const login.LoginPage(),
     );
   }
 }
