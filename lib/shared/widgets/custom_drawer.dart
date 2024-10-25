@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/configuracoes_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios_page.dart';
 
@@ -126,7 +127,15 @@ class CustonDrawer extends StatelessWidget {
                       const Text("Confgurações"),
                     ],
                   ))
-                ,onTap: () {},),
+                ,onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (bc) =>
+                        ConfiguracoesPage()
+                  ));
+                },),
 
               Divider(color: Color.fromARGB(255, 93, 92, 92),),
               SizedBox(height: 10,),
