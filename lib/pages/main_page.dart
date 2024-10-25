@@ -7,6 +7,7 @@ import 'package:trilhaap/pages/card_page.dart';
 import 'package:trilhaap/pages/image_assets.dart';
 import 'package:trilhaap/pages/list_view.dart';
 import 'package:trilhaap/pages/list_view_h.dart';
+import 'package:trilhaap/pages/tarefa_page.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
 import 'dados_cadastrais.dart';
@@ -54,6 +55,9 @@ class _MainPageState extends State<MainPage> {
                   Container(
                     child: ListViewH()
                   ),
+                  Container(
+                    child: TarefaPage()
+                  ),
                 ],
               ),
             ),
@@ -68,7 +72,8 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(label: "page1", icon: Icon(Icons.add)),
               BottomNavigationBarItem(label: "page2", icon: Icon(Icons.home)),
               BottomNavigationBarItem(label: "page3", icon: Icon(Icons.person)),
-              BottomNavigationBarItem(label: "page4", icon: Icon(Icons.list)),
+              BottomNavigationBarItem(label: "page4", icon: Icon(Icons.image)),
+              BottomNavigationBarItem(label: "page5", icon: Icon(Icons.list)),
             ])
           ],
         ),
