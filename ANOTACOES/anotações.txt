@@ -3,9 +3,12 @@ No flutter tudo é widget.
 Expanded: Organiza espaço ocupado por itens em rows, columns e flex, 
           fazendo com que ocupe espaço vagos dentro do seu pai.
 
-
 ETAPA 1 -> Primeiros componentes - completo
 ETAPA 2 -> tela de login, páginas, drawer e navegação - completo
 ETAPA 3 -> interação com o usuário
 ETAPA 4 -> Exibição de dados.
 
+
+================================== PERSISTÊNCIA DE DADOS LOCAIS ==================================
+
+shared preferences:
