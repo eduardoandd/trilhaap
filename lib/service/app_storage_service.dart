@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum STORAGE_CHAVES {
@@ -12,9 +14,54 @@ enum STORAGE_CHAVES {
   CHAVE_MODO_ESCURO,
 }
 
+enum STORAGE_CHAVES_CONFIGURACOES {
+  CHAVE_NOME_USUARIO,
+  CHAVE_ALTURA_USUARIO,
+  CHAVE_RECEBER_NOTIFICACAO,
+  CHAVE_MODO_ESCURO
+}
+
+enum STORAGE_CHAVES_NUMEROS_ALEATORIOS {
+  CHAVE_NUMERO_ALEATORIO,
+  CHAVE_QTD_CLIQUES
+}
+
 class AppStorageService {
 
+  Future<String> getConfiguracoestraisNome() async{
+    return _getString(STORAGE_CHAVES_CONFIGURACOES.CHAVE_NOME_USUARIO.toString());
+  }
+  Future<void> setConfiguracoesNome(String nome) async{
+    _setString(STORAGE_CHAVES_CONFIGURACOES.CHAVE_NOME_USUARIO.toString(), nome);
+  }
+  //==========================
+
+  Future<void> setConfiguracoesAlturaUsuario(double altura) async{
+    await _setDouble(STORAGE_CHAVES_CONFIGURACOES.CHAVE_ALTURA_USUARIO.toString(), altura);
+  }
   
+  Future<double> getConfiguracoesAlturaUsuario() async{
+    var altura=_getDouble(STORAGE_CHAVES_CONFIGURACOES.CHAVE_ALTURA_USUARIO.toString());
+    return altura;
+  }
+  //==========================
+
+  Future<void> setConfiguracoesReceberNotificacoes(bool value) async{
+    await _setBool(STORAGE_CHAVES_CONFIGURACOES.CHAVE_RECEBER_NOTIFICACAO.toString(), value);
+  }
+  
+  Future<bool> getConfiguracoesReceberNotificacoes() async{
+    return _getBool(STORAGE_CHAVES_CONFIGURACOES.CHAVE_RECEBER_NOTIFICACAO.toString());
+  }
+  //==========================
+
+  Future<void> setConfiguracoesModoEscuro(bool value) async{
+    await _setBool(STORAGE_CHAVES_CONFIGURACOES.CHAVE_MODO_ESCURO.toString(), value);
+  }
+  
+  Future<bool> getConfiguracoesModoEscuro() async{
+    return _getBool(STORAGE_CHAVES_CONFIGURACOES.CHAVE_MODO_ESCURO.toString());
+  }
 
   Future<String> getDadosCadastraisNome() async{
     return _getString(STORAGE_CHAVES.CHAVE_NOME.toString());
@@ -54,6 +101,24 @@ class AppStorageService {
   }
   //==========================
 
+  Future<void> setNumeroAleatoriosNumeroGerado(int num) async{
+    await _setInt(STORAGE_CHAVES_NUMEROS_ALEATORIOS.CHAVE_NUMERO_ALEATORIO.toString(), num);
+  }
+  
+  Future<int> getNumeroAleatoriosNumeroGerado() async{
+    return _getInt(STORAGE_CHAVES_NUMEROS_ALEATORIOS.CHAVE_NUMERO_ALEATORIO.toString());
+  }
+  //==========================
+
+  Future<void> setNumeroAleatoriosQtdCliques(int qtd) async{
+    await _setInt(STORAGE_CHAVES_NUMEROS_ALEATORIOS.CHAVE_QTD_CLIQUES.toString(), qtd);
+  }
+  
+  Future<int> getNumeroAleatoriosQtdCliques() async{
+    return _getInt(STORAGE_CHAVES_NUMEROS_ALEATORIOS.CHAVE_QTD_CLIQUES.toString());
+  }
+  //==========================
+
 
   Future<void> setDadosCadastraisLinguagensPreferidas(List<String> linguagens) async{
     await _setStringList(STORAGE_CHAVES.CHAVE_LINGUAGENS_PREFERIDA.toString(), linguagens);
@@ -63,8 +128,6 @@ class AppStorageService {
     return _getStringList(STORAGE_CHAVES.CHAVE_LINGUAGENS_PREFERIDA.toString());
   }
   //==========================
-
-
 
 
 
@@ -86,6 +149,16 @@ class AppStorageService {
   Future<int> _getInt(String chave) async{
     var storage = await SharedPreferences.getInstance();
     return storage.getInt(chave) ?? 0;
+  }
+
+  Future<void> _setDouble(String chave, double value) async{
+    var storage = await SharedPreferences.getInstance();
+    await storage.setDouble(chave, value);
+  }
+
+  Future<double> _getDouble(String chave) async{
+    var storage = await SharedPreferences.getInstance();
+    return storage.getDouble(chave) ?? 0;
   }
 
   Future<void> _setBool(String chave, bool value) async{

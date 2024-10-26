@@ -6,6 +6,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../service/app_storage_service.dart';
+
 class ConfiguracoesPage extends StatefulWidget {
   const ConfiguracoesPage({Key? key}) : super(key: key);
 
@@ -16,13 +18,14 @@ class ConfiguracoesPage extends StatefulWidget {
 class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
 
 
-  late SharedPreferences storage; 
   String? nomeUsuario;
   double? altura;
   bool receberNotoficacoes = false;
   bool modoEscuro = false;
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaUsuarioController = TextEditingController();
+  AppStorageService storage = AppStorageService();
+
 
   final CHAVE_NOME_USUARIO = "CHAVE_NOME_";
   final CHAVE_ALTURA_USUARIO = "CHAVE_ALTURA_";
@@ -38,12 +41,14 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
   }
 
   carregarDados() async {
-    storage = await SharedPreferences.getInstance();
+    
+    nomeUsuarioController.text=  await storage.getConfiguracoestraisNome();
+    alturaUsuarioController.text= (await storage.getConfiguracoesAlturaUsuario()).toString();
+    receberNotoficacoes = await storage.getConfiguracoesReceberNotificacoes();
+    modoEscuro = await storage.getConfiguracoesModoEscuro();
+
     setState(() {
-      alturaUsuarioController.text=(storage.getDouble(CHAVE_ALTURA_USUARIO) ?? 0).toString();
-      nomeUsuarioController.text=storage.getString(CHAVE_NOME_USUARIO) ?? "";
-      receberNotoficacoes = storage.getBool(CHAVE_RECEBER_NOTIFICACAO) ?? false;
-      modoEscuro = storage.getBool(CHAVE_MODO_ESCURO) ?? false;
+      
     });
   }
 
@@ -98,9 +103,9 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                 onPressed: () async{
                   FocusManager.instance.primaryFocus?.unfocus();
                   try {
-                    await storage.setDouble(CHAVE_ALTURA_USUARIO, double.parse(alturaUsuarioController.text));
-                    
-                  } catch (e) {
+                    await storage.setConfiguracoesAlturaUsuario(double.parse(alturaUsuarioController.text));                    
+                  } 
+                  catch (e) {
                     showDialog(context: context, builder: (_) {
                       return AlertDialog(
                         title: Text("Meu app"),
@@ -117,9 +122,9 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                     });
                     return;
                   }
-                  await storage.setString(CHAVE_NOME_USUARIO, nomeUsuarioController.text);
-                  await storage.setBool(CHAVE_RECEBER_NOTIFICACAO, receberNotoficacoes);
-                  await storage.setBool(CHAVE_MODO_ESCURO, modoEscuro);
+                  await storage.setConfiguracoesNome(nomeUsuarioController.text);
+                  await storage.setConfiguracoesReceberNotificacoes(receberNotoficacoes);
+                  await storage.setConfiguracoesModoEscuro(modoEscuro);
                   Navigator.pop(context);
                 }, 
                 child: Text("Salvar")
