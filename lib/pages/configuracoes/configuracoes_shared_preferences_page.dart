@@ -6,16 +6,16 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../service/app_storage_service.dart';
+import '../../service/app_storage_service.dart';
 
-class ConfiguracoesPage extends StatefulWidget {
-  const ConfiguracoesPage({Key? key}) : super(key: key);
+class ConfiguracoesSharedPreferencesPage extends StatefulWidget {
+  const ConfiguracoesSharedPreferencesPage({Key? key}) : super(key: key);
 
   @override
-  State<ConfiguracoesPage> createState() => _ConfiguracoesPageState();
+  State<ConfiguracoesSharedPreferencesPage> createState() => _ConfiguracoesSharedPreferencesPageState();
 }
 
-class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
+class _ConfiguracoesSharedPreferencesPageState extends State<ConfiguracoesSharedPreferencesPage> {
 
 
   String? nomeUsuario;

@@ -9,6 +9,4 @@ ETAPA 3 -> interação com o usuário
 ETAPA 4 -> Exibição de dados.
 
 
-================================== PERSISTÊNCIA DE DADOS LOCAIS ==================================
-
-shared preferences:
+Hive: Banco de dados NOSQL rápido e leve de usar.

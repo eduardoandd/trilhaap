@@ -8,16 +8,16 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../service/app_storage_service.dart';
+import '../../service/app_storage_service.dart';
 
-class NumeroAleatoriosPage extends StatefulWidget {
-  const NumeroAleatoriosPage({Key? key}) : super(key: key);
+class NumeroAleatoriosSharedPreferencesPage extends StatefulWidget {
+  const NumeroAleatoriosSharedPreferencesPage({Key? key}) : super(key: key);
 
   @override
-  State<NumeroAleatoriosPage> createState() => _NumeroAleatoriosPageState();
+  State<NumeroAleatoriosSharedPreferencesPage> createState() => _NumeroAleatoriosSharedPreferencesPageState();
 }
 
-class _NumeroAleatoriosPageState extends State<NumeroAleatoriosPage> {
+class _NumeroAleatoriosSharedPreferencesPageState extends State<NumeroAleatoriosSharedPreferencesPage> {
 
   int? numeroGerado=0;
   int? qtdCliques;
