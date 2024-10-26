@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trilhaap/repositories/nivel_repository.dart';
 
 import '../repositories/linguagens_repository.dart';
@@ -19,8 +20,8 @@ class DadosCadastraisPage extends StatefulWidget {
 class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   // final String texto;
   TextEditingController nomeController = TextEditingController(text: "");
-
   TextEditingController dataController = TextEditingController(text: "");
+  late SharedPreferences storage;
 
   DateTime? dataNascimento;
 
@@ -29,18 +30,43 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagensRepository= LinguagensRepository();
   var nivelSelecionado = "";
   var linguagens = [];
-  var linguagensSelecionadas = [];
+  List<String> linguagensSelecionadas = [];
   double salarioEscolhido=1000;
-
   int? tempoExperiencia=0;
-
   bool salvando = false;
+
+
+  final CHAVE_NOME = "CHAVE_NOME";
+  final CHAVE_DATA_NASCIMENTO = "CHAVE_DATA_NASCIMENTO";
+  final CHAVE_NIVEL_EXPERIENCIA = "CHAVE_NIVEL_EXPERIENCIA";
+  final CHAVE_TEMPO_EXPERIENCIA = "CHAVE_TEMPO_EXPERIENCIA";
+  final CHAVE_LINGUAGENS_PREFERIDA = "CHAVE_LINGUAGENS_PREFERIDAS";
+  final CHAVE_PRETENSAO_SALARIAL = "CHAVE_PRETENSAO_SALARIAL";
+
 
   @override
   void initState() {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagens();
+    carregarDados();
     super.initState();
+  }
+
+  carregarDados() async{
+    storage = await SharedPreferences.getInstance();
+    
+    nomeController.text=storage.getString(CHAVE_NOME) ?? "";
+    dataController.text=storage.getString(CHAVE_DATA_NASCIMENTO) ?? "";   
+    nivelSelecionado=storage.getString(CHAVE_NIVEL_EXPERIENCIA) ?? "";   
+    tempoExperiencia=storage.getInt(CHAVE_TEMPO_EXPERIENCIA) ??  0;   
+    linguagensSelecionadas=storage.getStringList(CHAVE_LINGUAGENS_PREFERIDA) ??  [];
+    // print(linguagensSelecionadas);
+    dataNascimento = DateTime.parse(dataController.text);
+
+    setState(() {
+      
+    });
+    
   }
 
   // ESPECIFICA O TIPO DE RETORNO
@@ -58,6 +84,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   }
 
   @override
+  
   
   Widget build(BuildContext context) {
 
@@ -106,7 +133,8 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                   selected: nivelSelecionado == nivel,
                   value: nivel.toString(), 
                   groupValue: nivelSelecionado, 
-                  onChanged: (value){
+
+                  onChanged: (value) {
                     print(value);
                     setState(() {
                       nivelSelecionado=value.toString();
@@ -128,6 +156,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                 });
               }
             ),
+
             TextLabel(texto: "Linguagens preferidas"), 
             Column(
               children: linguagens.map((linguagem) => CheckboxListTile(
@@ -172,7 +201,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
               }
             ),
             TextButton(
-              onPressed: (){
+              onPressed: () async{
                 setState(() {
                   salvando=false;
                 });
@@ -208,6 +237,13 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                     // });
                   Navigator.pop(context);
                 });
+
+                await storage.setString(CHAVE_NOME, nomeController.text);
+                await storage.setString(CHAVE_DATA_NASCIMENTO, dataController.text);
+                await storage.setString(CHAVE_NIVEL_EXPERIENCIA, nivelSelecionado);
+                await storage.setInt(CHAVE_TEMPO_EXPERIENCIA, tempoExperiencia!);
+                await storage.setStringList(CHAVE_LINGUAGENS_PREFERIDA, linguagensSelecionadas);
+
               }, 
               
               child: Text("Salvar"))
