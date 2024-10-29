@@ -7,10 +7,10 @@ import 'package:trilhaap/pages/card_page.dart';
 import 'package:trilhaap/pages/image_assets.dart';
 import 'package:trilhaap/pages/list_view.dart';
 import 'package:trilhaap/pages/list_view_h.dart';
-import 'package:trilhaap/pages/tarefa_page.dart';
+import 'package:trilhaap/pages/tarefas/tarefa_hive_page.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
-import 'dados_cadastrais.dart';
+import 'dados_cadastrais/dados_cadastrais_hive.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
                     child: ListViewH()
                   ),
                   Container(
-                    child: TarefaPage()
+                    child: TarefaHivePage()
                   ),
                 ],
               ),

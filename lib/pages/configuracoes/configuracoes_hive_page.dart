@@ -23,12 +23,9 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   late ConfiguracoesRepository configuracoesRepository;
   ConfiguracoesModel configuracoesModel = ConfiguracoesModel.vazio();
 
-
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaUsuarioController = TextEditingController();
   // late Box boxConfiguracoes;
-
-
 
   @override
 

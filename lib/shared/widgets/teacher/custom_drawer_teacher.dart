@@ -5,7 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/teacher/login_page_teacher.dart';
 
-import '../../../pages/dados_cadastrais.dart';
+import '../../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
 
 
 
@@ -100,7 +100,7 @@ class CustonDrawerTeacher extends StatelessWidget {
                 ))
               ,onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisHivePage()));
               },),
             Divider(color: Color.fromARGB(255, 187, 184, 184),),
 

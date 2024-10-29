@@ -8,7 +8,7 @@ import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_pa
 import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 
-import '../../pages/dados_cadastrais.dart';
+import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class CustonDrawer extends StatelessWidget {
                   ))
                 ,onTap: () {
                   Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  DadosCadastraisHivePage()));
                 },),
               Divider(color: Color.fromARGB(255, 93, 92, 92),),
 
