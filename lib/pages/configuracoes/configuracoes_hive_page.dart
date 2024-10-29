@@ -6,6 +6,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trilhaap/model/configuracoes_model.dart';
+import 'package:trilhaap/repositories/configuracoes_repository.dart';
 
 import '../../service/app_storage_service.dart';
 
@@ -18,20 +20,15 @@ class ConfiguracoesHivePage extends StatefulWidget {
 
 class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
 
+  late ConfiguracoesRepository configuracoesRepository;
+  ConfiguracoesModel configuracoesModel = ConfiguracoesModel.vazio();
 
-  String? nomeUsuario;
-  double? altura;
-  bool receberNotoficacoes = false;
-  bool modoEscuro = false;
+
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaUsuarioController = TextEditingController();
-  late Box boxConfiguracoes;
+  // late Box boxConfiguracoes;
 
 
-  final CHAVE_NOME_USUARIO = "CHAVE_NOME_";
-  final CHAVE_ALTURA_USUARIO = "CHAVE_ALTURA_";
-  final CHAVE_RECEBER_NOTIFICACAO = "CHAVE_NOTIFICACAO";
-  final CHAVE_MODO_ESCURO = "CHAVE_MODO_ESCURO";
 
   @override
 
@@ -42,18 +39,11 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   }
 
   carregarDados() async {
+    configuracoesRepository = await ConfiguracoesRepository.carregar();
+    configuracoesModel = configuracoesRepository.obterDados();
 
-    if(Hive.isBoxOpen("box_configuracoes")){
-      boxConfiguracoes=Hive.box('box_configuracoes');
-    }
-    else{
-      boxConfiguracoes= await Hive.openBox('box_configuracoes');
-    }
-
-    nomeUsuarioController.text= boxConfiguracoes.get('nomeUsuario') ?? "";  
-    alturaUsuarioController.text= boxConfiguracoes.get('alturaUsuario')?? 0;
-    receberNotoficacoes = boxConfiguracoes.get('receberNotificacoes')?? false;
-    modoEscuro = boxConfiguracoes.get('modoEscuro')?? false;
+    nomeUsuarioController.text= configuracoesModel.nomeUsuario;
+    alturaUsuarioController.text= configuracoesModel.altura.toString();
 
     setState(() {
       
@@ -90,28 +80,28 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
 
               SwitchListTile(
                 title: Text("Receber Notifcações?"),
-                value: receberNotoficacoes, 
+                value: configuracoesModel.recebeNotificacoes, 
 
                 onChanged: (bool value) {
                   setState(() {
-                    receberNotoficacoes = !receberNotoficacoes;
+                    configuracoesModel.recebeNotificacoes = value;
                   });
                 }
               ),
               SwitchListTile(
                 title: Text("Tema escuro"),
-                value: modoEscuro, 
+                value: configuracoesModel.modoEscuro, 
 
                 onChanged: (bool value){
                 setState(() {
-                  modoEscuro = value;
+                  configuracoesModel.modoEscuro = value;
                 });
               }),
               TextButton(
                 onPressed: () async{
                   FocusManager.instance.primaryFocus?.unfocus();
                   try {
-                    await boxConfiguracoes.put('alturaUsuario',alturaUsuarioController.text);                    
+                    configuracoesModel.altura = double.parse(alturaUsuarioController.text);                  
                   } 
                   catch (e) {
                     showDialog(context: context, builder: (_) {
@@ -130,9 +120,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
                     });
                     return;
                   }
-                  await boxConfiguracoes.put('nomeUsuario',nomeUsuarioController.text);
-                  await boxConfiguracoes.put('receberNotificacoes',receberNotoficacoes);
-                  await boxConfiguracoes.put('modoEscuro',modoEscuro);
+                  configuracoesModel.nomeUsuario = nomeUsuarioController.text;
+                  configuracoesRepository.salvar(configuracoesModel);
                   Navigator.pop(context);
                 }, 
                 child: Text("Salvar")
