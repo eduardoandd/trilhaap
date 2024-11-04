@@ -8,6 +8,7 @@ import 'package:trilhaap/pages/image_assets.dart';
 import 'package:trilhaap/pages/list_view.dart';
 import 'package:trilhaap/pages/list_view_h.dart';
 import 'package:trilhaap/pages/tarefas/tarefa_hive_page.dart';
+import 'package:trilhaap/pages/tarefas/tarefa_sqlite_page.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
 import 'dados_cadastrais/dados_cadastrais_hive.dart';
@@ -56,7 +57,7 @@ class _MainPageState extends State<MainPage> {
                     child: ListViewH()
                   ),
                   Container(
-                    child: TarefaHivePage()
+                    child: TarefaSQLitePage()
                   ),
                 ],
               ),

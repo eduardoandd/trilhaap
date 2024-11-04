@@ -4,17 +4,34 @@ import 'package:trilhaap/repositories/sqlite/database.dart';
 
 class TarefaSqLiteRepository{
 
-  Future<List<TarefaSqLiteModel>> obterDados() async{
-    List<TarefaSqLiteModel> tarefas = [];
+  Future<List<TarefaSqLiteModel>> obterDados(bool apenasNaoConcluidos) async {
+  List<TarefaSqLiteModel> tarefas = [];
+  try {
     var db = await SqLiteDataBase().ObterDataBase();
-    var result = await db.rawQuery(' SELECT * FROM TAREFAS');
+    var result = await db.rawQuery(
+      apenasNaoConcluidos 
+      ? 'SELECT id, descricao, concluido FROM TAREFAS WHERE CONCLUIDO = 0' 
+      : 'SELECT id, descricao, concluido FROM TAREFAS'
+    );
+    // print(result); 
+    
+    for (var element in result) {
 
-    for (var element in result){
-      var model = TarefaSqLiteModel(int.parse(element["id"].toString()),element["descricao"].toString(), element["concluido"] == "1");
-      tarefas.add(model);
+      tarefas.add(
+        TarefaSqLiteModel(
+          int.parse(element["ID"].toString()),
+          element["DESCRICAO"].toString(),
+          element["CONCLUIDO"] == 1
+        )
+      );
     }
-    return tarefas;
+  } 
+  catch (e) {
+    print("Erro ao obter dados: $e");
   }
+  return tarefas;
+}
+
 
   Future<void> salvar(TarefaSqLiteModel model) async {
     var db = await SqLiteDataBase().ObterDataBase();
@@ -42,7 +59,7 @@ class TarefaSqLiteRepository{
   Future<void> remover(int id) async {
     var db = await SqLiteDataBase().ObterDataBase();
     await db.rawInsert(
-      'DELETE TAREFAS WHERE ID = ?',
+      'DELETE FROM TAREFAS WHERE ID = ?',
       [id]
     );
   }
