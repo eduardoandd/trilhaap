@@ -8,6 +8,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import 'package:trilhaap/model/via_cep_model.dart';
+import 'package:trilhaap/repositories/via_cep_repository.dart';
 
 class ConsultaCepPage extends StatefulWidget {
   const ConsultaCepPage({Key? key}) : super(key: key);
@@ -18,10 +19,10 @@ class ConsultaCepPage extends StatefulWidget {
 
 class _ConsultaCepPageState extends State<ConsultaCepPage> {
   var cepController = TextEditingController(text: "");
-  String endereco = "";
-  String cidade = "";
-  String estado = "";
   bool loading = false;
+  var viaCEPModel = ViaCEPModel();
+  var viaCEPRepository = ViaCEPRepository();
+
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
@@ -45,23 +46,10 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
                   setState(() {
                     loading = true;
                   });
-                  var response = await http
-                      .get(Uri.parse("https://viacep.com.br/ws/$cep/json/"));
-                  // print(response.body);
-                  // print(response.statusCode);
-                  var json = jsonDecode(response.body);
-                  var viaCEPModel = ViaCEPModel.fromJson(json);
-                  print(viaCEPModel);
+                  viaCEPModel = await viaCEPRepository.consultaCEP(cep);
                   
-                  cidade = viaCEPModel.localidade ?? "";
-                  estado = viaCEPModel.uf ?? "";
-                  endereco = viaCEPModel.logradouro ?? ""; 
 
-                } else {
-                  cidade = "";
-                  estado = "";
-                  endereco = "";
-                }
+                } else {}
                 setState(() {
                   loading = false;
                 });
@@ -71,24 +59,24 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
               height: 20,
             ),
             Text(
-              endereco,
+              viaCEPModel.logradouro ?? "",
               style: TextStyle(fontSize: 22),
             ),
             SizedBox(
               height: 20,
             ),
             Text(
-              estado,
+              viaCEPModel.uf ?? "",
               style: TextStyle(fontSize: 22),
             ),
             SizedBox(
               height: 20,
             ),
             Text(
-              cidade,
+              viaCEPModel.localidade ?? "",
               style: TextStyle(fontSize: 22),
             ),
-            if (loading)CircularProgressIndicator()
+            if (loading) CircularProgressIndicator()
           ],
         ),
       ),
