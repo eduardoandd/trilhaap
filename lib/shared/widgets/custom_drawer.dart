@@ -7,6 +7,7 @@ import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
+import 'package:trilhaap/pages/post_page.dart';
 
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
 
@@ -165,6 +166,31 @@ class CustonDrawer extends StatelessWidget {
                 Divider(color: Color.fromARGB(255, 93, 92, 92),),
                 SizedBox(height: 10,),
 
+                InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.numbers),
+                      SizedBox(width: 5,),
+                      const Text("Posts"),
+                    ],
+                  ))
+                ,onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (bc) =>
+                        PostsPage()
+                  ));
+                },),
+
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
               InkWell(
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
@@ -212,6 +238,8 @@ class CustonDrawer extends StatelessWidget {
                     });
                   },
               ),
+
+              
 
             ],
           ),
