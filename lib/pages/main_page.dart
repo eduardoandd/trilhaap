@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/card_page.dart';
+import 'package:trilhaap/pages/comments_page.dart';
 import 'package:trilhaap/pages/image_assets.dart';
 import 'package:trilhaap/pages/list_view.dart';
 import 'package:trilhaap/pages/list_view_h.dart';
@@ -63,6 +64,9 @@ class _MainPageState extends State<MainPage> {
                   Container(
                     child: ConsultaCepPage()
                   ),
+                  // Container(
+                  //   child: CommentsPage()
+                  // ),
                 ],
               ),
             ),
@@ -80,6 +84,7 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(label: "page4", icon: Icon(Icons.image)),
               BottomNavigationBarItem(label: "page5", icon: Icon(Icons.list)),
               BottomNavigationBarItem(label: "http", icon: Icon(Icons.list)),
+              // BottomNavigationBarItem(label: "Comments", icon: Icon(Icons.abc_rounded)),
             ])
           ],
         ),

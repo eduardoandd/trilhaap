@@ -49,7 +49,7 @@ class _ConsultaCepPageState extends State<ConsultaCepPage> {
                   viaCEPModel = await viaCEPRepository.consultaCEP(cep);
                   
 
-                } else {}
+                } 
                 setState(() {
                   loading = false;
                 });
