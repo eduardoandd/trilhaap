@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/pages/comments_page.dart';
-import 'package:trilhaap/repositories/posts_repositories.dart';
+import 'package:trilhaap/repositories/posts/impl/posts_dio_repositories.dart';
+import 'package:trilhaap/repositories/posts/posts_repository.dart';
+
 
 import '../model/post_model.dart';
+import '../repositories/posts/impl/posts_http_repositories.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({Key? key}) : super(key: key);
@@ -17,7 +20,7 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  var postsRepository = PostsRepositories();
+  PostsRepository postsRepository = PostsDioRepository();
   var posts = <PostModel>[];
 
   @override
