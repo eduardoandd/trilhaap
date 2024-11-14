@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:trilhaap/model/comment_model.dart';
-import 'package:trilhaap/repositories/http/comments_repository.dart';
+import 'package:trilhaap/repositories/comments/comments_repository.dart';
+import 'package:trilhaap/repositories/comments/impl/comments_dio_repository.dart';
 
 class CommentsPage extends StatefulWidget {
   final int postId;
@@ -17,8 +18,7 @@ class CommentsPage extends StatefulWidget {
 
 class _CommentsPageState extends State<CommentsPage> {
   var comments = <CommentModel>[];
-  var commentsRepository = CommentsRepository();
-
+  CommentsRepository commentsRepository = CommentsDioRepository();
   @override
   void initState() {
     // TODO: implement initState
@@ -29,10 +29,7 @@ class _CommentsPageState extends State<CommentsPage> {
   carregarDados() async {
     comments = await commentsRepository.retornaComentarios(widget.postId);
 
-    setState(() {
-      
-    });
-    
+    setState(() {});
   }
 
   @override
@@ -40,40 +37,38 @@ class _CommentsPageState extends State<CommentsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: Text("Comentários do Post: ${widget.postId}")
-      ),
+      appBar: AppBar(title: Text("Comentários do Post: ${widget.postId}")),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: comments.length == 0 ? 
-        Center(child: CircularProgressIndicator()) : 
-        ListView.builder(
-          itemBuilder: (_, index) {
-            var comment = comments[index];
+        child: comments.length == 0
+            ? Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemBuilder: (_, index) {
+                  var comment = comments[index];
 
-            return Card(
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Card(
+                      child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(comment.name.substring(0,6)),
-                        Text(comment.email),
-
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(comment.name.substring(0, 6)),
+                            Text(comment.email),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(comment.body),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Text(comment.body),
-                  ],
-                ),
-              )
-            );
-          },
-          itemCount: comments.length,
-        ),
+                  ));
+                },
+                itemCount: comments.length,
+              ),
       ),
     ));
   }
