@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -9,7 +9,9 @@ import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaap/pages/post_page.dart';
 
+import '../../pages/characters/characters_page.dart';
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
+import '../../repositories/marvel/characters/characters_repository.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
@@ -184,6 +186,34 @@ class CustonDrawer extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (bc) =>
                         PostsPage()
+                  ));
+                },),
+
+                Divider(color: Color.fromARGB(255, 93, 92, 92),),
+                SizedBox(height: 10,),
+
+                InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.headphones_battery_outlined),
+                      SizedBox(width: 5,),
+                      const Text("Herois"),
+                    ],
+                  ))
+                ,onTap: () async{
+                  var characterRepository=  CharacterRepository();
+                  var heroes = await characterRepository.getCharacters();
+                  print(heroes);
+
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (bc) =>
+                        CharactersPage()
                   ));
                 },),
 
