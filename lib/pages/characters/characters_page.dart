@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -15,6 +17,8 @@ class CharactersPage extends StatefulWidget {
 class _CharactersPageState extends State<CharactersPage> {
   late CharacterRepository characterRepository;
   CharactersModel characters = CharactersModel();
+  int offset= 0;
+  bool loading = false;
 
   @override
   void initState() {
@@ -25,53 +29,99 @@ class _CharactersPageState extends State<CharactersPage> {
   }
 
   carregarDados() async {
-    characters = await characterRepository.getCharacters();
+
+    if(characters.data == null || characters.data!.results == null){
+      characters = await characterRepository.getCharacters(offset);
+    }
+    else{
+      setState(() {  
+        loading = true;
+      });
+      offset= offset + characters.data!.count!;
+      var tempList = await characterRepository.getCharacters(offset);
+      characters.data!.results!.addAll(tempList.data!.results!);
+      loading=false;
+
+    }
+
     setState(() {});
+  }
+
+  int totalReturn(){
+    try {
+      return characters.data!.total!;
+      
+    } catch (e) {
+      return 0;
+      
+    }
+  }
+
+  int currentQuantity(){
+    try {
+      return offset + characters.data!.count!;
+    } catch (e) {
+      return 0;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        child: ListView.builder(
-            itemCount:
-                (characters.data == null || characters.data!.results == null)
-                    ? 0
-                    : characters.data!.results!.length,
-            itemBuilder: (_, int index) {
-              var character = characters.data!.results![index];
-              return Card(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.network(
-                      character.thumbnail!.path! +
-                          "." +
-                          character.thumbnail!.extension!,
-                      width: 150,
-                      height: 150,
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(character!.name!,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w600)),
-                            Text(character!.description!),
-                          ],
+      appBar: AppBar(
+        title: Text("Herois: ${currentQuantity()}/${totalReturn()}"),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+                itemCount:
+                    (characters.data == null || characters.data!.results == null)
+                        ? 0
+                        : characters.data!.results!.length,
+                itemBuilder: (_, int index) {
+                  var character = characters.data!.results![index];
+                  return Card(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.network(
+                          character.thumbnail!.path! +
+                              "." +
+                              character.thumbnail!.extension!,
+                          width: 150,
+                          height: 150,
                         ),
-                      ),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(character.name!,
+                                    style: TextStyle(
+                                        fontSize: 20, fontWeight: FontWeight.w600)),
+                                Text(character.description!),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            }),
+                  );
+                }),
+          ),
+          !loading ? ElevatedButton(onPressed:(){
+            carregarDados();
+
+          }, 
+          child: Text("Carregar mais itens"))
+          :
+          CircularProgressIndicator()
+
+        ],
       ),
     ));
   }

@@ -9,7 +9,7 @@ import '../../../model/characters_model.dart';
 import 'package:crypto/crypto.dart' as crypto;
 
 class CharacterRepository{
-  Future<CharactersModel> getCharacters() async{
+  Future<CharactersModel> getCharacters(int offset) async{
 
     var dio = Dio();
     var ts = DateTime.now().microsecondsSinceEpoch.toString();
@@ -17,7 +17,7 @@ class CharacterRepository{
     var privateKey = "dae53955c9e7c55700cc1131776fde05f082d2b7";
     var hash = _generateMd5(ts + privateKey + publicKey);
 
-    var query = "ts=$ts&apikey=$publicKey&hash=$hash";
+    var query = "offset=$offset&ts=$ts&apikey=$publicKey&hash=$hash";
     var result  = await dio.get("http://gateway.marvel.com/v1/public/characters?$query");
 
     var charactersModel = CharactersModel.fromJson(result.data);

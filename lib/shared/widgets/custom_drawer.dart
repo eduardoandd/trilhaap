@@ -205,7 +205,7 @@ class CustonDrawer extends StatelessWidget {
                   ))
                 ,onTap: () async{
                   var characterRepository=  CharacterRepository();
-                  var heroes = await characterRepository.getCharacters();
+                  var heroes = await characterRepository.getCharacters(0);
                   print(heroes);
 
                   Navigator.pop(context);
