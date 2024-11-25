@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,48 +16,53 @@ class CharactersPage extends StatefulWidget {
 
 class _CharactersPageState extends State<CharactersPage> {
   late CharacterRepository characterRepository;
+  ScrollController _scrollController = ScrollController();
   CharactersModel characters = CharactersModel();
-  int offset= 0;
+  int offset = 0;
   bool loading = false;
 
   @override
   void initState() {
     // TODO: implement initState
+    _scrollController.addListener(() {
+      var posicaoParaPaginar = _scrollController.position.maxScrollExtent *0.7;
+      // print(_scrollController.position.pixels);
+      if (_scrollController.position.pixels >= posicaoParaPaginar) {
+        carregarDados();
+      }
+    });
     characterRepository = CharacterRepository();
     super.initState();
     carregarDados();
   }
 
   carregarDados() async {
+    if (loading) return;
 
-    if(characters.data == null || characters.data!.results == null){
+    if (characters.data == null || characters.data!.results == null) {
       characters = await characterRepository.getCharacters(offset);
-    }
-    else{
-      setState(() {  
+    } else {
+      setState(() {
         loading = true;
       });
-      offset= offset + characters.data!.count!;
+      offset = offset + characters.data!.count!;
       var tempList = await characterRepository.getCharacters(offset);
       characters.data!.results!.addAll(tempList.data!.results!);
-      loading=false;
-
+      loading = false;
     }
 
     setState(() {});
   }
 
-  int totalReturn(){
+  int totalReturn() {
     try {
       return characters.data!.total!;
-      
     } catch (e) {
       return 0;
-      
     }
   }
 
-  int currentQuantity(){
+  int currentQuantity() {
     try {
       return offset + characters.data!.count!;
     } catch (e) {
@@ -70,16 +75,25 @@ class _CharactersPageState extends State<CharactersPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text("Herois: ${currentQuantity()}/${totalReturn()}"),
+        title: loading
+            ? Transform.scale(
+                scale: 0.7, // Reduz ou aumenta o tamanho geral
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
+            : Text("Herois: ${currentQuantity()}/${totalReturn()}"),
       ),
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-                itemCount:
-                    (characters.data == null || characters.data!.results == null)
-                        ? 0
-                        : characters.data!.results!.length,
+            child: characters.data != null ? ListView.builder(
+                controller: _scrollController,
+                itemCount: (characters.data == null ||
+                        characters.data!.results == null)
+                    ? 0
+                    : characters.data!.results!.length,
                 itemBuilder: (_, int index) {
                   var character = characters.data!.results![index];
                   return Card(
@@ -102,7 +116,8 @@ class _CharactersPageState extends State<CharactersPage> {
                               children: [
                                 Text(character.name!,
                                     style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.w600)),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600)),
                                 Text(character.description!),
                               ],
                             ),
@@ -111,16 +126,9 @@ class _CharactersPageState extends State<CharactersPage> {
                       ],
                     ),
                   );
-                }),
+                }) 
+                : Center(child: CircularProgressIndicator()),
           ),
-          !loading ? ElevatedButton(onPressed:(){
-            carregarDados();
-
-          }, 
-          child: Text("Carregar mais itens"))
-          :
-          CircularProgressIndicator()
-
         ],
       ),
     ));
