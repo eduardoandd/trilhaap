@@ -75,15 +75,7 @@ class _CharactersPageState extends State<CharactersPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: loading
-            ? Transform.scale(
-                scale: 0.7, // Reduz ou aumenta o tamanho geral
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Colors.white,
-                ),
-              )
-            : Text("Herois: ${currentQuantity()}/${totalReturn()}"),
+        title:Text("Herois: ${currentQuantity()}/${totalReturn()}"),
       ),
       body: Column(
         children: [
