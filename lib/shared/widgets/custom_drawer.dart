@@ -8,6 +8,8 @@ import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_pa
 import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaap/pages/post_page.dart';
+import 'package:trilhaap/pages/tarefas/tarefa_http_page.dart';
+import 'package:trilhaap/repositories/back4app/tarefas_back4app_repository.dart';
 
 import '../../pages/characters/characters_page.dart';
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
@@ -19,8 +21,7 @@ class CustonDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               InkWell(
                 onTap: (){
@@ -217,6 +218,34 @@ class CustonDrawer extends StatelessWidget {
                   ));
                 },),
 
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.headphones_battery_outlined),
+                      SizedBox(width: 5,),
+                      const Text("Tarefas HTTP"),
+                    ],
+                  ))
+                ,onTap: () async{
+                  var tarefa = TarefasBack4AppRepository();
+                  var tarefas = await tarefa.obterTarefas(false);
+                  print(tarefas);
+
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (bc) =>
+                        TarefaHttpPage()
+                  ));
+                },),
 
               Divider(color: Color.fromARGB(255, 93, 92, 92),),
               SizedBox(height: 10,),
