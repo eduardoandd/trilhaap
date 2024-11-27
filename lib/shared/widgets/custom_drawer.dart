@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
@@ -67,7 +68,7 @@ class CustonDrawer extends StatelessWidget {
                   width: double.infinity, 
                   child: Row(
                     children: [
-                      const Icon(Icons.person),
+                      const FaIcon(FontAwesomeIcons.floppyDisk),
                       SizedBox(width: 5,),
                       const Text("Dados cadastrais"),
                     ],
