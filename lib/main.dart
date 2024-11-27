@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:trilhaap/model/tarefa_hive_model.dart';
@@ -13,6 +14,7 @@ import 'repositories/sqlite/database.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   var documentDirectory = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(documentDirectory.path);
   Hive.registerAdapter(DadosCadastraisModelAdapter());

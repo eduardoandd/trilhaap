@@ -76,6 +76,7 @@ flutter:
     - assets/dio_png.png
     - assets/bottle.png
     - assets/health.png
+    - .env
     
     # - images/a_dot_ham.jpeg
 

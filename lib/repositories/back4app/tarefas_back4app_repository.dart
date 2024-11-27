@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:trilhaap/model/tarefas_back4app_model.dart';
 
 class TarefasBack4AppRepository{
@@ -8,10 +9,10 @@ class TarefasBack4AppRepository{
   TarefasBack4AppRepository(){
     _dio = Dio();
 
-    _dio.options.headers['X-Parse-Application-Id'] = 'qY5LTRlCbwBuv8nDZe3WpAwVilBMahGzP9uPKQei';
-    _dio.options.headers['X-Parse-REST-API-Key'] = 'OiRN406NY2TCEZB3l7RCQaaeJJNM5dFcfsTnM6gT';
+    _dio.options.headers['X-Parse-Application-Id'] = dotenv.get("HEADERID");
+    _dio.options.headers['X-Parse-REST-API-Key'] = dotenv.get("HEADERKEY");
     _dio.options.headers['Content-Type'] = 'application/json';
-    _dio.options.baseUrl = "https://parseapi.back4app.com/classes";
+    _dio.options.baseUrl = dotenv.get("URL");
 
   }
 
