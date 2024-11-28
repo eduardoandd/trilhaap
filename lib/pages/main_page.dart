@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/pages/auro_size_text_page.dart';
 import 'package:trilhaap/pages/card_page.dart';
 import 'package:trilhaap/pages/comments_page.dart';
 import 'package:trilhaap/pages/image_assets.dart';
@@ -14,6 +15,7 @@ import 'package:trilhaap/pages/consulta_cep.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
 import 'dados_cadastrais/dados_cadastrais_hive.dart';
+import 'indicator_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -64,6 +66,12 @@ class _MainPageState extends State<MainPage> {
                   Container(
                     child: ConsultaCepPage()
                   ),
+                  Container(
+                    child: IndicatorPage()
+                  ),
+                  Container(
+                    child: AutoSizeTextPage()
+                  ),
                   // Container(
                   //   child: CommentsPage()
                   // ),
@@ -84,6 +92,8 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(label: "page4", icon: Icon(Icons.image)),
               BottomNavigationBarItem(label: "page5", icon: Icon(Icons.list)),
               BottomNavigationBarItem(label: "http", icon: Icon(Icons.list)),
+              BottomNavigationBarItem(label: "indicator", icon: Icon(Icons.list)),
+              BottomNavigationBarItem(label: "AutoSize", icon: Icon(Icons.list)),
               // BottomNavigationBarItem(label: "Comments", icon: Icon(Icons.abc_rounded)),
             ])
           ],
