@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
 class BrasilFieldsPage extends StatefulWidget {
   const BrasilFieldsPage({Key? key}) : super(key: key);

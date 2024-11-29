@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
@@ -117,6 +118,30 @@ class CustonDrawer extends StatelessWidget {
                       ),
                     );
                   });
+                },),
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info),
+                      SizedBox(width: 5,),
+                      const Text("Intl"),
+                    ],
+                  ))
+                ,onTap: () {
+                  var f =  NumberFormat('#,###.0#', 'en_US');
+                  var fBR =  NumberFormat('#,###.0#', 'pt_BR');
+                  print(f.format(12.345));
+                  print(fBR.format(12.345));
+                  var data = DateTime(2650,05,09);
+                  print(DateFormat('EEEE', 'en_US').format(data));
+
                 },),
               Divider(color: Color.fromARGB(255, 93, 92, 92),),
 

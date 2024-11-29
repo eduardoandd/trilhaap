@@ -9,6 +9,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trilhaap/pages/brasil_fields_page.dart';
 
+import '../shared/widgets/custom_drawer.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            drawer: CustonDrawer(),
             appBar: AppBar(
               title: Text("Home"),
             ),
@@ -33,9 +36,6 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 color: Color.fromARGB(255, 25, 23, 170),
-                child: ButtonBar(
-                  
-                ),
               ),
               Container(
                 color: Color.fromARGB(255, 11, 235, 59),
