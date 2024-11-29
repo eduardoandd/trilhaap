@@ -48,6 +48,12 @@ dependencies:
   flutter_dotenv: ^5.0.2
   percent_indicator: ^4.2.4
   auto_size_text: ^3.0.0
+  animated_text_kit: ^4.2.2
+  smooth_page_indicator: ^1.2.0+3
+  # convex_bottom_bar: ^3.2.0
+  brasil_fields: ^1.6.0
+  intl: ^0.18.1
+  
 
 dev_dependencies:
   flutter_launcher_icons: "^0.10.0"
