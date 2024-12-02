@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,6 +21,7 @@ import '../../pages/characters/characters_page.dart';
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import '../../repositories/marvel/characters/characters_repository.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
@@ -331,6 +334,26 @@ class CustonDrawer extends StatelessWidget {
                   ))
                 ,onTap: () {
                   Share.share('Olhem esse site: https://dio.me');
+                },),
+
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.share),
+                      SizedBox(width: 5,),
+                      const Text("Diretorio"),
+                    ],
+                  ))
+                ,onTap: ()async {
+                  Directory directory = await path_provider.getTemporaryDirectory();
+                  print(directory.path);
                 },),
 
 
