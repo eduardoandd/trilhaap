@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:trilhaap/pages/battery/battery_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
@@ -12,10 +13,12 @@ import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.d
 import 'package:trilhaap/pages/post_page.dart';
 import 'package:trilhaap/pages/tarefas/tarefa_http_page.dart';
 import 'package:trilhaap/repositories/back4app/tarefas_back4app_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../pages/characters/characters_page.dart';
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import '../../repositories/marvel/characters/characters_repository.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CustonDrawer extends StatelessWidget {
   const CustonDrawer({Key? key}) : super(key: key);
@@ -185,6 +188,7 @@ class CustonDrawer extends StatelessWidget {
                 ,onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
+                    // ss
                     context, 
                     MaterialPageRoute(
                       builder: (bc) =>
@@ -242,6 +246,91 @@ class CustonDrawer extends StatelessWidget {
                       builder: (bc) =>
                         CharactersPage()
                   ));
+                },),
+
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.battery_2_bar),
+                      SizedBox(width: 5,),
+                      const Text("Bateria"),
+                    ],
+                  ))
+                ,onTap: () async{
+                  var characterRepository=  CharacterRepository();
+                  var heroes = await characterRepository.getCharacters(0);
+                  print(heroes);
+
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (bc) =>
+                        BatteryPage()
+                  ));
+                },),
+
+                Divider(color: Color.fromARGB(255, 93, 92, 92),),
+                SizedBox(height: 10,),
+
+                InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.battery_2_bar),
+                      SizedBox(width: 5,),
+                      const Text("Dio"),
+                    ],
+                  ))
+                ,onTap: () async{
+                  await launchUrl(Uri.parse("https://dio.me"));
+                },),
+
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.battery_2_bar),
+                      SizedBox(width: 5,),
+                      const Text("Maps"),
+                    ],
+                  ))
+                ,onTap: () async{
+                  await launchUrl(Uri.parse("google.navigation:q=Orlando FL&mode=d"));
+                },),
+
+
+              Divider(color: Color.fromARGB(255, 93, 92, 92),),
+              SizedBox(height: 10,),
+
+              InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical:10, horizontal: 20),
+                  width: double.infinity, 
+                  child: Row(
+                    children: [
+                      const Icon(Icons.share),
+                      SizedBox(width: 5,),
+                      const Text("Compartilhar"),
+                    ],
+                  ))
+                ,onTap: () {
+                  Share.share('Olhem esse site: https://dio.me');
                 },),
 
 
