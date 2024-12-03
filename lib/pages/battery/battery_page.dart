@@ -15,6 +15,7 @@ class BatteryPage extends StatefulWidget {
 }
 
 class _BatteryPageState extends State<BatteryPage> {
+  
   var battery = Battery();
   var statusBateria = 0;
 
