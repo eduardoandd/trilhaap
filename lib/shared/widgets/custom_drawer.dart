@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:trilhaap/pages/battery/battery_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
+import 'package:trilhaap/pages/connectivity_plus_page.dart';
 import 'package:trilhaap/pages/login_page.dart';
 import 'package:trilhaap/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaap/pages/post_page.dart';
@@ -304,6 +305,31 @@ class CustonDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(
                   context, MaterialPageRoute(builder: (bc) => PostsPage()));
+            },
+          ),
+           Divider(
+            color: Color.fromARGB(255, 93, 92, 92),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const Icon(Icons.wifi),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    const Text("Conexão"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (bc) => ConnectivityPlus()));
             },
           ),
           Divider(
