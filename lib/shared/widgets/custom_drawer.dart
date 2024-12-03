@@ -8,6 +8,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:trilhaap/pages/battery/battery_page.dart';
+import 'package:trilhaap/pages/camera_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaap/pages/configuracoes/configuracoes_shared_preferences_page.dart';
 import 'package:trilhaap/pages/connectivity_plus_page.dart';
@@ -21,6 +22,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../pages/characters/characters_page.dart';
 import '../../pages/dados_cadastrais/dados_cadastrais_hive.dart';
+import '../../pages/qr_code_page.dart';
 import '../../repositories/marvel/characters/characters_repository.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -430,6 +432,32 @@ class CustonDrawer extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
+                    const Text("QrdCode"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => QrdCodePage()));
+              
+            },
+          ),
+          Divider(
+            color: Color.fromARGB(255, 93, 92, 92),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const Icon(Icons.battery_2_bar),
+                    SizedBox(
+                      width: 5,
+                    ),
                     const Text("Maps"),
                   ],
                 )),
@@ -537,6 +565,25 @@ class CustonDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => GeoLocator()));
+            },
+          ),
+          InkWell(
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const Icon(Icons.camera),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    const Text("Camera"),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => CameraPage()));
             },
           ),
           Divider(
