@@ -12,6 +12,7 @@ import 'package:trilhaap/pages/brasil_fields_page.dart';
 import 'package:trilhaap/service/dark_mode_service.dart';
 
 import '../shared/widgets/custom_drawer.dart';
+import 'contador/contador_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               actions: [
                 Center(child: Text("Dark")),
                 Consumer<DarkModeService>(
-                  builder: (_,darkModeService,widget) {
+                  builder: (_,DarkModeService,Widget) {
                     return Switch(value: darkModeService.darkMode, onChanged: (bool value){
                       darkModeService.darkMode = value;
 
@@ -45,8 +46,7 @@ class _HomePageState extends State<HomePage> {
             ),
             body: PageView(controller: pageController, children: [
               Container(
-                color: Colors.white,
-                child: BrasilFieldsPage()
+                child: ContadorPage()
               ),
               Container(
                 color: Color.fromARGB(255, 25, 23, 170),
