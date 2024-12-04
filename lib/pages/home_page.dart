@@ -7,7 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:trilhaap/pages/brasil_fields_page.dart';
+import 'package:trilhaap/service/dark_mode_service.dart';
 
 import '../shared/widgets/custom_drawer.dart';
 
@@ -23,11 +25,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var darkModeService = Provider.of<DarkModeService>(context);
     return SafeArea(
         child: Scaffold(
             drawer: CustonDrawer(),
             appBar: AppBar(
               title: Text("Home"),
+              actions: [
+                Center(child: Text("Dark")),
+                Consumer<DarkModeService>(
+                  builder: (_,darkModeService,widget) {
+                    return Switch(value: darkModeService.darkMode, onChanged: (bool value){
+                      darkModeService.darkMode = value;
+
+                    });
+                  }
+                )
+              ],
             ),
             body: PageView(controller: pageController, children: [
               Container(
