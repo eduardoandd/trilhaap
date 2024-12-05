@@ -8,7 +8,10 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:trilhaap/model/tarefa.dart';
 import 'package:trilhaap/pages/brasil_fields_page.dart';
+import 'package:trilhaap/pages/tarefa_provider_page.dart';
+import 'package:trilhaap/pages/tarefas/tarefa_http_page.dart';
 import 'package:trilhaap/service/dark_mode_service.dart';
 
 import '../shared/widgets/custom_drawer.dart';
@@ -49,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 child: ContadorPage()
               ),
               Container(
-                color: Color.fromARGB(255, 25, 23, 170),
+                child: TarefaProviderPage(),
               ),
               Container(
                 color: Color.fromARGB(255, 11, 235, 59),

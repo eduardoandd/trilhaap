@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:trilhaap/pages/home_page.dart';
 import 'package:trilhaap/pages/splash_screen/splash_screen_delay_page%20.dart';
 import 'package:trilhaap/pages/splash_screen/splash_screen_page.dart';
+import 'package:trilhaap/repositories/tarefa_provider_repository.dart';
 import 'package:trilhaap/service/contador_service.dart';
 import 'package:trilhaap/service/dark_mode_service.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<DarkModeService>(
             create: (_) => DarkModeService()),
-        ChangeNotifierProvider<ContadorService>(create: (_) => ContadorService())
+        ChangeNotifierProvider<ContadorService>(create: (_) => ContadorService()),
+        ChangeNotifierProvider<TarefaProviderRepository>(create: (_) => TarefaProviderRepository())
       ],
       child: Consumer<DarkModeService>(builder: (_,darkModeService,widget) {
           return MaterialApp(
