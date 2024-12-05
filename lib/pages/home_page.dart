@@ -17,6 +17,7 @@ import 'package:trilhaap/service/dark_mode_service.dart';
 import '../shared/widgets/custom_drawer.dart';
 import 'contador/contador_page.dart';
 import 'mobx/contador_mobx_page.dart';
+import 'mobx/contador_mobx_store_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 child: TarefaProviderPage(),
               ),
               Container(
-                child: ContadorMobXPage(),
+                child: ContadorMobStoreXPage(),
               ),
             ]),
             
