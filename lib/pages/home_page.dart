@@ -10,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:trilhaap/model/tarefa.dart';
 import 'package:trilhaap/pages/brasil_fields_page.dart';
+import 'package:trilhaap/pages/mobx/tarefa_mobx_page.dart';
 import 'package:trilhaap/pages/tarefa_provider_page.dart';
 import 'package:trilhaap/pages/tarefas/tarefa_http_page.dart';
 import 'package:trilhaap/service/dark_mode_service.dart';
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 child: ContadorPage()
               ),
               Container(
-                child: TarefaProviderPage(),
+                child: TarefaMobXPage(),
               ),
               Container(
                 child: ContadorMobStoreXPage(),
