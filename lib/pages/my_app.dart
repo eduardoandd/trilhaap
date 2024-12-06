@@ -10,6 +10,7 @@ import 'package:trilhaap/pages/splash_screen/splash_screen_page.dart';
 import 'package:trilhaap/repositories/tarefa_provider_repository.dart';
 import 'package:trilhaap/service/contador_service.dart';
 import 'package:trilhaap/service/dark_mode_service.dart';
+import 'package:get/get.dart';
 
 import 'expanded_pratica.dart';
 import 'main_page.dart' as home;

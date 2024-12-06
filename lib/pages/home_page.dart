@@ -10,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:trilhaap/model/tarefa.dart';
 import 'package:trilhaap/pages/brasil_fields_page.dart';
+import 'package:trilhaap/pages/getx/contador_getx_page.dart';
 import 'package:trilhaap/pages/mobx/tarefa_mobx_page.dart';
 import 'package:trilhaap/pages/tarefa_provider_page.dart';
 import 'package:trilhaap/pages/tarefas/tarefa_http_page.dart';
@@ -17,6 +18,7 @@ import 'package:trilhaap/service/dark_mode_service.dart';
 
 import '../shared/widgets/custom_drawer.dart';
 import 'contador/contador_page.dart';
+import 'getx/tarefa_getx_page.dart';
 import 'mobx/contador_mobx_page.dart';
 import 'mobx/contador_mobx_store_page.dart';
 
@@ -55,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                 child: ContadorPage()
               ),
               Container(
-                child: TarefaMobXPage(),
+                child: TarefaGetXPage(),
               ),
               Container(
-                child: ContadorMobStoreXPage(),
+                child: ContadorGetXPage(),
               ),
             ]),
             
