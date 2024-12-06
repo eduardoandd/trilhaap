@@ -8,6 +8,8 @@ import 'package:trilhaap/model/comment_model.dart';
 import 'package:trilhaap/repositories/comments/comments_repository.dart';
 import 'package:trilhaap/repositories/comments/impl/comments_dio_repository.dart';
 
+import '../main.dart';
+
 class CommentsPage extends StatefulWidget {
   final int postId;
   const CommentsPage({Key? key, required this.postId}) : super(key: key);
@@ -18,7 +20,7 @@ class CommentsPage extends StatefulWidget {
 
 class _CommentsPageState extends State<CommentsPage> {
   var comments = <CommentModel>[];
-  CommentsRepository commentsRepository = CommentsDioRepository();
+  var commentsRepository = getIt<CommentsDioRepository>();
   @override
   void initState() {
     // TODO: implement initState

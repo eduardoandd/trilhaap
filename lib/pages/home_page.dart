@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             ),
             body: PageView(controller: pageController, children: [
               Container(
-                child: ContadorPage()
+                child: ContadorMobXPage()
               ),
               Container(
                 child: TarefaGetXPage(),

@@ -7,12 +7,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
+import 'package:trilhaap/main.dart';
 import 'package:trilhaap/service/contador_service.dart';
 
 import '../../service/counter_mobx_service.dart';
 
 class ContadorMobXPage extends StatelessWidget {
-  var contadorMobXService = CounterMobXService();
+  var contadorMobXService = getIt<CounterMobXService>();
 
   @override
   Widget build(BuildContext context) {

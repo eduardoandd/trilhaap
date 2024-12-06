@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get_it/get_it.dart';
 import 'package:trilhaap/pages/comments_page.dart';
 import 'package:trilhaap/repositories/posts/impl/posts_dio_repositories.dart';
 import 'package:trilhaap/repositories/posts/posts_repository.dart';
 
 
+import '../main.dart';
 import '../model/post_model.dart';
 import '../repositories/posts/impl/posts_http_repositories.dart';
 
@@ -20,7 +22,7 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  PostsRepository postsRepository = PostsDioRepository();
+  var postsRepository = getIt<PostsRepository>();
   var posts = <PostModel>[];
 
   @override
