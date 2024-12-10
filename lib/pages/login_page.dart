@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:trilhaap/pages/main_page.dart';
+import 'package:trilhaap/pages/login/main_page.dart';
 import 'teacher/login_page_teacher.dart' as teacher;
 
 

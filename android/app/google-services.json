@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "46701113112",
+    "project_id": "eduardo-andrade-firebase-app",
+    "storage_bucket": "eduardo-andrade-firebase-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46701113112:android:75ed79dd2adb739c85b86d",
+        "android_client_info": {
+          "package_name": "com.eduardoandrade.trilhaap.trilhaap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9pN_o5GMI2RssAR3m9I0kiKF3XcadYXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

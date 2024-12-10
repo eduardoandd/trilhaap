@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:trilhaap/pages/home_page.dart';
+import 'package:trilhaap/pages/home/home_page.dart';
 import 'package:trilhaap/pages/splash_screen/splash_screen_delay_page%20.dart';
 import 'package:trilhaap/pages/splash_screen/splash_screen_page.dart';
 import 'package:trilhaap/repositories/tarefa_provider_repository.dart';
@@ -13,7 +13,7 @@ import 'package:trilhaap/service/dark_mode_service.dart';
 import 'package:get/get.dart';
 
 import 'expanded_pratica.dart';
-import 'main_page.dart' as home;
+import 'login/main_page.dart' as home;
 import 'teacher/login_page_teacher.dart' as teacher;
 import 'login_page.dart' as login;
 

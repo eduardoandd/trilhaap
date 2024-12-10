@@ -14,8 +14,8 @@ import 'package:trilhaap/pages/tarefas/tarefa_sqlite_page.dart';
 import 'package:trilhaap/pages/consulta_cep.dart';
 import 'package:trilhaap/shared/widgets/custom_drawer.dart';
 
-import 'dados_cadastrais/dados_cadastrais_hive.dart';
-import 'indicator_page.dart';
+import '../dados_cadastrais/dados_cadastrais_hive.dart';
+import '../indicator_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

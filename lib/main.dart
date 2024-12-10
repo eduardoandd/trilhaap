@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:trilhaap/model/tarefa_hive_model.dart';
-import 'package:trilhaap/pages/main_page.dart';
+import 'package:trilhaap/pages/login/main_page.dart';
 import 'package:trilhaap/pages/my_app.dart' as app;
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:trilhaap/repositories/comments/comments_repository.dart';
@@ -15,6 +15,8 @@ import 'package:trilhaap/service/counter_mobx_service.dart';
 
 import 'model/dados_cadastrais_model.dart';
 import 'repositories/sqlite/database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
 final getIt = GetIt.instance;
@@ -30,6 +32,11 @@ void main() async{
   Hive.init(documentDirectory.path);
   Hive.registerAdapter(DadosCadastraisModelAdapter());
   Hive.registerAdapter(TarefaHiveModelAdapter());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const app.MyApp());
 }
